@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import java.sql.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,9 +14,11 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class Empleado {
-	  private Integer id_empleado;
-	  private String usuario;
-	  private String contrasenya;
-	  private Integer id_rol;
+public class Plato {
+	  private Integer id_plato;
+	  private String nombre;
+	  private String descripción;
+	  private Float precio;
+	  private Integer num_plato;
+	  private Integer id_categoria;
 }

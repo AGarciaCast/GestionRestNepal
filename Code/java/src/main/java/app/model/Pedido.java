@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,9 +14,11 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class Empleado {
-	  private Integer id_empleado;
-	  private String usuario;
-	  private String contrasenya;
-	  private Integer id_rol;
+public class Pedido {
+	  private Integer id_pedido;
+	  private String direccion;
+	  private LocalDateTime fecha;
+	  private LocalDateTime hora_entrega;
+	  private Float importe;
+	  private Integer id_estado;
 }

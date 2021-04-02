@@ -13,9 +13,7 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class Empleado {
-	  private Integer id_empleado;
-	  private String usuario;
-	  private String contrasenya;
-	  private Integer id_rol;
+public class Menu {
+	  private Integer id_menu;
+	  private Byte menu_actual;
 }
