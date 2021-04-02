@@ -17,6 +17,11 @@ li{
     list-style: none;
 }
 
+.fa-undo , 
+.fa-plus-square{
+    pointer-events: none;
+}
+
 
 
 
@@ -53,6 +58,13 @@ nav h1{
     text-align: center;
 }
 
+.seleccionarCartaForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .elementosCarta{
     display: flex;
     justify-content: space-around;
@@ -60,17 +72,52 @@ nav h1{
 
 }
 
+.enviarSeleccionesCarta{
+    margin: 2rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 2rem;
+    border: none;
+    background-color: white;
+}
+
+.enviarSeleccionesCarta:hover{
+    background-color: #a37aa7;
+    color: white;
+}
 .elementoCarta{
     flex:  1 1 20rem;
     padding: 2rem;
     display: flex;
 }
 
+.elementoCarta.elementoCartaSelecionado{
+    border: 0.125rem solid #cacece;
+}
 .buttomsElemento{
     padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+[type="checkbox"]{
+    -webkit-appearance: none;
+    flex: 1 1;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    background-color: #fafafa;
+    border: 0.125rem solid #cacece;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+[type="checkbox"]:checked{
+    content: "\2714";
+    color: #99a1a7;
+    background-color: rgb(100, 151, 100);
 }
 .buttomsElemento button{
     flex: 1 1;
@@ -86,3 +133,23 @@ nav h1{
     text-align: center;
     padding: 1rem;
 }
+
+.seleccionadosCarta{
+    position: sticky;
+    bottom: 0;
+}
+.elementosSeleccionadosCarta{
+    display:  flex;
+    justify-content: space-around;
+    align-items: center;
+}
+ .elementoSeleccionadoCarta{
+     display: flex;
+     margin: 2rem;
+     align-items: center;
+ }
+
+ .elementoSeleccionadoCarta button,h2 {
+     padding: 0.5rem;
+     margin: 1rem;
+ }
