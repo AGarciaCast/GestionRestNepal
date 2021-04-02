@@ -9,13 +9,13 @@ import java.sql.SQLException;
 @Component
 public class Connector {
     public static final String DB_URL =
-      "jdbc:mysql://techsuite.live:3306/company?user=root&password=techsuite";      
+    		"jdbc:mysql://restnepal.mysql.database.azure.com:3306/rest?useSSL=true&requireSSL=false";       
      
       public Connection getConnection() {
         Connection conn = null;
          
         try {
-            conn = DriverManager.getConnection(DB_URL);
+            conn = DriverManager.getConnection(DB_URL, "tabernero@restnepal", "Triqui5_");
         }
         catch (SQLException ex){
             ex.printStackTrace();
