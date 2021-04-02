@@ -1,6 +1,6 @@
 package app.dao;
 
-import app.model.Busqueda;
+/*
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.springframework.stereotype.Repository;
 
@@ -72,14 +72,14 @@ public class BusquedaDAO extends GenericDAO {
     String query = "UPDATE Busqueda SET num_resultados = ? WHERE id = ?";
 
     // It is going to be something like (Object[][]):
-    /*
+ 
     {
       {10000, 1},
       {22122, 2},
       ...
       {40000, 3}
     }
-     */
+  
     Object[][] params = busquedas
       .stream()
       .map(
@@ -92,4 +92,6 @@ public class BusquedaDAO extends GenericDAO {
       queryRunner.batch(conn, query, params);
     }
   }
+
 }
+  */

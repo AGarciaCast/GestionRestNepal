@@ -9,7 +9,7 @@ import java.sql.SQLException;
 @Component
 public class Connector {
     public static final String DB_URL =
-    		"jdbc:mysql://restnepal.mysql.database.azure.com:3306/rest?useSSL=true&requireSSL=false";       
+    		"jdbc:mysql://restnepal.mysql.database.azure.com:3306/rest?useSSL=true&requireSSL=false&useJDBCCompliantTimezoneShift=true&serverTimezone=UTC";       
      
       public Connection getConnection() {
         Connection conn = null;
@@ -24,5 +24,10 @@ public class Connector {
         return conn;
     }
       
-
+      public static void main(String[]args){
+    	  Connector c = new Connector();
+    	  Connection conn = c.getConnection();
+    	  System.out.println(conn);
+    	  
+      }
 }

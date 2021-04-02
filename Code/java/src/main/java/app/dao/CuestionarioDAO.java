@@ -1,17 +1,6 @@
 package app.dao;
 
-import app.model.Cuestionario;
-import app.model.request.cuestionario.section.CuestionarioRequestCargo;
-import app.model.request.cuestionario.section.CuestionarioRequestSoftskill;
-import app.model.request.cuestionario.section.CuestionarioRequestTecnologia;
-import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.apache.commons.dbutils.handlers.ScalarHandler;
-import org.springframework.stereotype.Repository;
-
-import java.math.BigInteger;
-import java.sql.Connection;
-import java.util.List;
-
+/*
 @Repository
 public class CuestionarioDAO extends GenericDAO {
 
@@ -160,5 +149,8 @@ public class CuestionarioDAO extends GenericDAO {
     try (Connection conn = connector.getConnection()) {
       queryRunner.batch(conn, query, params);
     }
+    
   }
+
 }
+  */

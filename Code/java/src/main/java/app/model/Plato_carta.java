@@ -13,7 +13,7 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class Plato_Carta {
+public class Plato_carta {
 	  private Integer id_plato;
 	  private Integer id_carta;
 }
