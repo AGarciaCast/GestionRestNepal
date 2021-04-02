@@ -17,7 +17,7 @@ import java.sql.Date;
 public class Plato {
 	  private Integer id_plato;
 	  private String nombre;
-	  private String descripción;
+	  private String descripcion;
 	  private Float precio;
 	  private Integer num_plato;
 	  private Integer id_categoria;

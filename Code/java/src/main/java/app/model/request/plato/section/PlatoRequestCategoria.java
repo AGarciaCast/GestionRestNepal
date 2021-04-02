@@ -24,7 +24,7 @@ public class PlatoRequestCategoria {
 	  private String nombre_categoria;
 	  private String descripcion_categoria;
 	
-	  public PlatoRequestCategoria(Integer id_plato, String nombre_plato, String descripcion_plato, Float precio,
+	  /*public PlatoRequestCategoria(Integer id_plato, String nombre_plato, String descripcion_plato, Float precio,
 			Integer num_plato, Integer id_categoria, String nombre_categoria, String descripcion_categoria) {
 		super();
 		this.id_plato = id_plato;
@@ -91,5 +91,5 @@ public class PlatoRequestCategoria {
 	}
 	public void setDescripcion_categoria(String descripcion_categoria) {
 		this.descripcion_categoria = descripcion_categoria;
-	}
+	}*/
 }
