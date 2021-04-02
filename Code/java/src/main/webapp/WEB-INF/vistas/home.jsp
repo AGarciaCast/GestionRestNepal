@@ -3,7 +3,6 @@
         <meta charset="UTF-8"> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
         <link rel="stylesheet" href="css/cssIndex.css" type="text/css">
-        <script language="JavaScript" type="text/javascript" src="jss/jssIndex.js"></script>
     </head>
 <body>
     <header>
@@ -29,56 +28,112 @@
 
             <h1 class="cartaTittle"> Carta</h1>
 
-            <div class="elementosCarta">
+            <form action="" class="seleccionarCartaForm">
 
-                <div class="elementoCarta">
-                    <div class="buttomsElemento">
-                        <button type="button" class="selectButtom">
-                            <i class="fas fa-check-square"></i>
-                        </button>
-                        <button type="button" class="unselectButtom">
-                            <i class="fas fa-undo"></i>
-                        </button>
+                <div class="elementosCarta">
+                    <div class="elementoCarta">
+                        <div class="buttomsElemento">
+                           <input type="checkbox" class="selectButtomCarta" name="seleccion" value="1"/> 
+                            <button type="button" class="unselectButtom">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                        </div>
+                        <div class="textElemento">
+                            <h2> Plato</h2>
+                            <h3> Descripción plato</h3>
+                        </div>
                     </div>
-                    <div class="textElemento">
-                        <h2> Plato</h2>
-                        <h3> Descripción plato</h3>
+                    <div class="elementoCarta">
+                        <div class="buttomsElemento">
+                            <input type="checkbox" class="selectButtomCarta" name="seleccion" value="2" /> 
+                            <button type="button" class="unselectButtom">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                        </div>
+                        <div class="textElemento">
+                            <h2> Plato</h2>
+                            <h3> Descripción plato</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="elementoCarta">
-                    <div class="buttomsElemento">
-                        <button type="button" class="selectButtom">
-                            <i class="fas fa-check-square"></i>
-                        </button>
-                        <button type="button" class="unselectButtom">
-                            <i class="fas fa-undo"></i>
-                        </button>
-                    </div>
-                    <div class="textElemento">
-                        <h2> Plato</h2>
-                        <h3> Descripción plato</h3>
-                    </div>
-                </div>
-                <div class="elementoCarta">
-                    <div class="buttomsElemento">
-                        <button type="button" class="selectButtom">
-                            <i class="fas fa-check-square"></i>
-                        </button>
-                        <button type="button" class="unselectButtom">
-                            <i class="fas fa-undo"></i>
-                        </button>
-                    </div>
-                    <div class="textElemento">
-                        <h2> Plato</h2>
-                        <h3> Descripción plato</h3>
+                    <div class="elementoCarta">
+                        <div class="buttomsElemento">
+                            <input type="checkbox" class="selectButtomCarta" name="seleccion" value="3" /> 
+                            <button type="button" class="unselectButtom">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                        </div>
+                        <div class="textElemento">
+                            <h2> Plato</h2>
+                            <h3> Descripción plato</h3>
+                        </div>
                     </div>
                 </div>
 
-            </div>
+                <button type="submit" class="enviarSeleccionesCarta">
+                    <i class="fas fa-plus-square"></i>
+                </button>
+
+            </form>
 
         </section>
 
+        <section class="seleccionadosCarta">
+            <!--Esta seccion se mantiene al final de la pñagina y muestra los platos que se han ido seleccionando de forma horizontal y con un boton
+                para desseleccionar, si se hace bien, si ya no entran en la pagina , podras ir moviendote horizontamente por ella-->
+            <div class="elementosSeleccionadosCarta">
+                <div class="elementoSeleccionadoCarta">
+                    <button type="button" class="unselectButtom">
+                        <i class="fas fa-undo"></i>
+                    </button>
+                    <h2>Plato</h2>
+                </div>
+            </div>
+        </section>
+
+    </form>
     </main>
+
+
+    <script language="JavaScript" type="text/javascript" >
+
+        const bttomSeleccionarElementoCarta= document.querySelectorAll(".selectButtomCarta");
+        const bttomDesseleccionarElementoCarta= document.querySelectorAll(".unselectButtom")
+
+        //ADD event listener
+        bttomSeleccionarElementoCarta.forEach(function(buttom)
+        {
+            buttom.addEventListener("click",seleccionado);
+        });
+        bttomDesseleccionarElementoCarta.forEach(function(buttom)
+        {
+            buttom.addEventListener("click",seleccionado);
+        });
+
+
+        //functions
+
+        function seleccionado(event){
+            recibido=event.target;
+            console.log(recibido.parentElement);
+            elementoCarta=recibido.parentElement.parentElement;
+            console.log(elementoCarta);
+            if( recibido.classList[0] != "selectButtomCarta")
+            {
+                if (elementoCarta.classList.contains("elementoCartaSelecionado"))
+                {
+                    checkbox=elementoCarta.querySelector(".selectButtomCarta");
+                    checkbox.checked= false;
+                    elementoCarta.classList.toggle("elementoCartaSelecionado");
+                }
+            }
+            else
+            {
+                elementoCarta.classList.toggle("elementoCartaSelecionado");
+            }
+            
+        }
+
+    </script>
 
 
 </body>
