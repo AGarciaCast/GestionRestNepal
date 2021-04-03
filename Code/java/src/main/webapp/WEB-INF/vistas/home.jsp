@@ -31,8 +31,10 @@
 
             <h1 class="cartaTittle"> Carta</h1>
 
-            <form action="" class="seleccionarCartaForm">
+            <h2> ENtrantes</h2>
 
+            <form action="" class="seleccionarCartaForm">
+                
                 <div class="elementosCarta">
                 <c:forEach items="${platos}" var="plato">
                     <div class="elementoCarta">

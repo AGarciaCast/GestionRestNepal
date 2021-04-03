@@ -58,6 +58,12 @@ nav h1{
     text-align: center;
 }
 
+.tituloCategoria{
+    padding: 2rem;
+    margin: 2rem;
+    text-align: start;
+}
+
 .seleccionarCartaForm{
     display: flex;
     flex-direction: column;
