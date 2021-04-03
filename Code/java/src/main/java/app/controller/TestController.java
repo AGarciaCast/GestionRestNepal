@@ -28,4 +28,20 @@ public class TestController {
 	public List<Plato> test() throws Exception {
 		return p.getPlatoMenuActual();
 	}
+
+	@GetMapping("/menu")
+	public String menu() {
+		return "menuPP";
+	}
+
+	@GetMapping("/menuPS")
+	public String menuPS() {
+		return "menuPS";
+	}
+
+	@GetMapping("/menuPostre")
+	public String menuPostre() {
+		return "menuPostre";
+	}
+
 }
