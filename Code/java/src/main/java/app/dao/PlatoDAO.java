@@ -37,14 +37,4 @@ public class PlatoDAO extends GenericDAO {
 
 	    return platosMenu;
 	  }
-
-  public static void main(String[] args) {
-	  PlatoDAO p = new PlatoDAO();
-	  try {
-		System.out.println(p.getPlatoMenuActual());
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-  }
 }

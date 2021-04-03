@@ -2,6 +2,8 @@ package app.controller;
 
 import java.util.List;
 
+import app.dao.CategoriaDAO;
+import app.model.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,9 @@ public class TestController {
 	
 	@Autowired
 	private PlatoDAO p;
+
+	@Autowired
+	private CategoriaDAO c;
 	
 	@GetMapping("/home")
     public String mensaje() {
@@ -25,8 +30,8 @@ public class TestController {
 
     @GetMapping("/testDAO")
     @ResponseBody
-	public List<PlatoRequestCategoria> test() throws Exception {
-		return p.getPlatoMenuActual();
+	public List<Categoria> test() throws Exception {
+		return c.getCategorias();
 	}
 
 	@GetMapping("/menu")
