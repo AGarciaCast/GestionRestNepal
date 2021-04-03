@@ -25,7 +25,7 @@ public class TestController {
 
     @GetMapping("/testDAO")
     @ResponseBody
-	public List<Plato> test() throws Exception {
+	public List<PlatoRequestCategoria> test() throws Exception {
 		return p.getPlatoMenuActual();
 	}
 
