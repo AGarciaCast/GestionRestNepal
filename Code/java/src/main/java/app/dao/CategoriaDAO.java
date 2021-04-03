@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public class CategoriaDAO extends GenericDAO {
 
-//Query tabla categoria
+
   public List<Categoria> getCategorias() throws Exception {
 	    List<Categoria> categorias = new ArrayList<>();
 	    String query = "SELECT * FROM categoria;";
