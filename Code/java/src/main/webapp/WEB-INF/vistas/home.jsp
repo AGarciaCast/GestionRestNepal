@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
     <head>
         <meta charset="UTF-8"> 
@@ -24,7 +26,7 @@
     </header>
 
     <main>
-
+    	
         <section class="Carta">
 
             <h1 class="cartaTittle"> Carta</h1>
@@ -32,42 +34,20 @@
             <form action="" class="seleccionarCartaForm">
 
                 <div class="elementosCarta">
+                <c:forEach items="${platos}" var="plato">
                     <div class="elementoCarta">
                         <div class="buttomsElemento">
-                           <input type="checkbox" class="selectButtomCarta" name="seleccion" value="1"/> 
+                           	<input type="checkbox" class="selectButtomCarta" name="seleccion" value="1"/> 
                             <button type="button" class="unselectButtom">
                                 <i class="fas fa-undo"></i>
                             </button>
                         </div>
                         <div class="textElemento">
                             <h2> Plato</h2>
-                            <h3> Descripción plato</h3>
+                           	<h3> Descripción plato</h3>
                         </div>
                     </div>
-                    <div class="elementoCarta">
-                        <div class="buttomsElemento">
-                            <input type="checkbox" class="selectButtomCarta" name="seleccion" value="2" /> 
-                            <button type="button" class="unselectButtom">
-                                <i class="fas fa-undo"></i>
-                            </button>
-                        </div>
-                        <div class="textElemento">
-                            <h2> Plato</h2>
-                            <h3> Descripción plato</h3>
-                        </div>
-                    </div>
-                    <div class="elementoCarta">
-                        <div class="buttomsElemento">
-                            <input type="checkbox" class="selectButtomCarta" name="seleccion" value="3" /> 
-                            <button type="button" class="unselectButtom">
-                                <i class="fas fa-undo"></i>
-                            </button>
-                        </div>
-                        <div class="textElemento">
-                            <h2> Plato</h2>
-                            <h3> Descripción plato</h3>
-                        </div>
-                    </div>
+                </c:forEach>
                 </div>
 
                 <button type="submit" class="enviarSeleccionesCarta">
