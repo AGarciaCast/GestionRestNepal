@@ -31,31 +31,35 @@
 
             <h1 class="cartaTittle"> Carta</h1>
 
-            <h2> ENtrantes</h2>
-
             <form action="" class="seleccionarCartaForm">
-                
+
+                <c:forEach items="${categorias}" var="categoria">
+                <h2 class="tituloCategoria"> Entrantes</h2>
+
                 <div class="elementosCarta">
-                <c:forEach items="${platos}" var="plato">
+                    <c:forEach items="${platos}" var="plato">
                     <div class="elementoCarta">
                         <div class="buttomsElemento">
-                           	<input type="checkbox" class="selectButtomCarta" name="seleccion" value="1"/> 
+                            <input type="checkbox" class="selectButtomCarta" name="seleccion" value="1"/> 
                             <button type="button" class="unselectButtom">
                                 <i class="fas fa-undo"></i>
                             </button>
                         </div>
                         <div class="textElemento">
                             <h2> Plato</h2>
-                           	<h3> Descripción plato</h3>
+                            <h3> Descripción plato</h3>
                         </div>
                     </div>
-                </c:forEach>
+                    </c:forEach>
                 </div>
-
-                <button type="submit" class="enviarSeleccionesCarta">
-                    <i class="fas fa-plus-square"></i>
-                </button>
-
+                </c:forEach>
+                <div class="buttomEnviar">
+                    <button type="submit" class="enviarSeleccionesCarta">
+                        <i class="fas fa-plus-square"></i>
+                    </button>
+                </div>
+                
+            
             </form>
 
         </section>

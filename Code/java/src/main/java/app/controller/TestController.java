@@ -27,8 +27,10 @@ public class TestController {
 	@GetMapping("/home")
     public String mensaje(Model model) throws Exception {
 		String[] platos= {"PLato1", "Plato2", "Plato3"};
+		String[] categorias= {"entrantes", "principales"};
 		//List<Plato> platos= p.getPlatoMenuActual();
         model.addAttribute("platos",platos);
+        model.addAttribute("categorias", categorias);
 		return "home";
     }
 
