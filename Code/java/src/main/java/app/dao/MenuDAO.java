@@ -18,6 +18,8 @@ import java.util.List;
 @Repository
 public class MenuDAO extends GenericDAO{
 
+    //Funcion que marca el menu actual como no actual, crea un nuevo menu
+    // y lo marca como actual, y añade los platos elegidos al menu
     public void crearNuevoMenu(List<Integer> platos) throws Exception {
         BigInteger id_menu=null;
         String query1 = "UPDATE menu\n" +
