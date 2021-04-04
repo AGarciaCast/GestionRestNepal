@@ -45,6 +45,7 @@ public class TestController {
 		List<Integer> miLista = new ArrayList<Integer>();
 		miLista.add(1);
 		miLista.add(2);
+		miLista.add(3);
 		m.crearNuevoMenu(miLista);
 		return p.getPlatoMenuActual();
 	}
