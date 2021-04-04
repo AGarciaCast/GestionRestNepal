@@ -144,7 +144,6 @@ tags
 .settings
 .springBeans
 .vscode
-/code
 MANIFEST.MF
 _site/
 activemq-data
