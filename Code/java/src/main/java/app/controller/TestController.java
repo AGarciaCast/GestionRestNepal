@@ -1,8 +1,10 @@
 package app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import app.dao.CategoriaDAO;
+import app.dao.MenuDAO;
 import app.model.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class TestController {
 
 	@Autowired
 	private CategoriaDAO c;
+
+	@Autowired
+	private MenuDAO m;
 	
 	@GetMapping("/home")
     public String mensaje(Model model) throws Exception {
@@ -36,8 +41,12 @@ public class TestController {
 
     @GetMapping("/testDAO")
     @ResponseBody
-	public List<Categoria> test() throws Exception {
-		return c.getCategorias();
+	public List<PlatoRequestCategoria> test() throws Exception {
+		List<Integer> miLista = new ArrayList<Integer>();
+		miLista.add(1);
+		miLista.add(2);
+		m.crearNuevoMenu(miLista);
+		return p.getPlatoMenuActual();
 	}
 
 	@GetMapping("/menu")

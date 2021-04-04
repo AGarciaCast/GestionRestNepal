@@ -81,3 +81,9 @@ JOIN plato_carta AS pc ON p.id_plato=pc.id_plato
 JOIN carta AS c ON pc.id_carta=c.id_carta
 JOIN temporada AS t ON c.id_temporada=t.id_temporada 
 WHERE t.nombre="primavera";
+
+UPDATE menu
+SET menu_actual = 0
+WHERE menu_actual=1;
+
+SELECT * FROM menu;

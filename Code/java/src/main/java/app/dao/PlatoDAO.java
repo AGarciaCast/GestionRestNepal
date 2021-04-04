@@ -29,7 +29,7 @@ public class PlatoDAO extends GenericDAO {
 	    		"JOIN categoria AS c ON p.id_categoria=c.id_categoria " +
 	    		"WHERE m.menu_actual=TRUE;";
 
-	    System.out.println(connector==null);
+	    //System.out.println(connector==null);
 	    try (Connection conn = connector.getConnection()) {
 	    	platosMenu =
 	        queryRunner.query(conn, query, new BeanListHandler<>(PlatoRequestCategoria.class));
