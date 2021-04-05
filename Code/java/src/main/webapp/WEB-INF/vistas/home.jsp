@@ -31,7 +31,7 @@
 
             <h1 class="cartaTittle"> Carta</h1>
 
-            <form action="" class="seleccionarCartaForm">
+            <form action="" method="POST" class="seleccionarCartaForm">
 
                 <c:forEach items="${categorias}" var="categoria">
                 <h2 class="tituloCategoria"> Entrantes</h2>
@@ -40,7 +40,7 @@
                     <c:forEach items="${platos}" var="plato">
                     <div class="elementoCarta">
                         <div class="buttomsElemento">
-                            <input type="checkbox" class="selectButtomCarta" name="seleccion" value="1"/> 
+                            <input type="checkbox" class="selectButtomCarta" name="seleccion" value="1" />
                             <button type="button" class="unselectButtom">
                                 <i class="fas fa-undo"></i>
                             </button>

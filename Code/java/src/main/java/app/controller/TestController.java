@@ -9,12 +9,11 @@ import app.model.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import app.dao.PlatoDAO;
 import app.model.Plato;
 import app.model.request.plato.section.PlatoRequestCategoria;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -38,6 +37,18 @@ public class TestController {
         model.addAttribute("categorias", categorias);
 		return "home";
     }
+
+    @PostMapping("/home")
+	public String gestionarSeleccionesCarta(@RequestParam("seleccion") int[] selecciones, Model model) throws Exception {
+
+		List<Integer> idsPlatos= new ArrayList<Integer>();
+
+		for (int seleccion :selecciones) {
+				idsPlatos.add((Integer) seleccion);
+			}
+		//m.crearNuevoMenu(idsPlatos);
+		return  mensaje(model);
+	}
 
     @GetMapping("/testDAO")
     @ResponseBody
