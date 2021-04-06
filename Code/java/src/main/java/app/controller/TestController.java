@@ -76,4 +76,17 @@ public class TestController {
 		return "menuPostre";
 	}
 
+
+	@GetMapping("/login")
+	public String login(){
+		return "login";
+	}
+
+	@PostMapping("/login")
+	public String login(Model m, @RequestParam("username")String nombre, @RequestParam("password")String password) throws Exception{
+		m.addAttribute("session",true);
+		return mensaje(m);
+	}
+
 }
+
