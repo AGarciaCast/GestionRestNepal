@@ -53,12 +53,7 @@ public class TestController {
     @GetMapping("/testDAO")
     @ResponseBody
 	public List<PlatoRequestCategoria> test() throws Exception {
-		List<Integer> miLista = new ArrayList<Integer>();
-		miLista.add(1);
-		miLista.add(2);
-		miLista.add(3);
-		m.crearNuevoMenu(miLista);
-		return p.getPlatoMenuActual();
+		return p.getPlatosMenuActualCategoria("Postre");
 	}
 
 	@GetMapping("/menu")
