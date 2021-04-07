@@ -36,5 +36,26 @@ public class PlatoDAO extends GenericDAO {
 	    }
 
 	    return platosMenu;
-	  }
+  }
+
+	public List<Plato> getPlatoCartaCategoria(int id) throws Exception {
+		List<Plato> platos = new ArrayList<>();
+		String query = "SELECT p.id_plato AS id_plato, " +
+				"p.nombre AS nombre, " +
+				"p.descripcion AS descripcion, " +
+				"p.precio AS precio, " +
+				"p.num_plato AS num_plato, " +
+				"p.id_categoria AS id_categoria " +
+				"FROM plato AS p " +
+				"JOIN plato_carta AS pc ON p.id_plato=pc.id_plato " +
+				"JOIN carta AS c ON pc.id_carta=c.id_carta " +
+				"JOIN temporada AS t ON c.id_temporada=t.id_temporada " +
+				"WHERE p.id_categoria=? and t.nombre='primavera';";
+
+		try (Connection conn = connector.getConnection()) {
+			platos = queryRunner.query(conn, query, new BeanListHandler<>(Plato.class), id);
+		}
+
+		return platos;
+	}
 }
