@@ -1,14 +1,10 @@
 package app.dao;
 
 
-
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.springframework.stereotype.Repository;
-
-import app.dao.connector.Connector;
 import app.model.Plato;
 import app.model.request.plato.section.PlatoRequestCategoria;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -37,8 +33,6 @@ public class PlatoDAO extends GenericDAO {
 
 	    return platosMenu;
   }
-
-
 
 	public List<Plato> getPlatoCartaCategoria(int id) throws Exception {
 		List<Plato> platos = new ArrayList<>();
