@@ -84,17 +84,23 @@ public class TestController {
 	}*/
 
 	@GetMapping("/menu")
-	public String menu() {
+	public String menu(Model model) throws Exception {
+		List<PlatoRequestCategoria> entrantes = p.getPlatosMenuActualCategoria("Entrantes");
+		model.addAttribute("entrantes",entrantes);
 		return "menuPP";
 	}
 
 	@GetMapping("/menuPS")
-	public String menuPS() {
+	public String menuPS(Model model) throws Exception {
+		List<PlatoRequestCategoria> segundos= p.getPlatosMenuActualCategoria("segundos");
+		model.addAttribute("segundos",segundos);
 		return "menuPS";
 	}
 
 	@GetMapping("/menuPostre")
-	public String menuPostre() {
+	public String menuPostre(Model model) throws Exception {
+		List<PlatoRequestCategoria> postres = p.getPlatosMenuActualCategoria("Postre");
+		model.addAttribute("postres",postres);
 		return "menuPostre";
 	}
 
