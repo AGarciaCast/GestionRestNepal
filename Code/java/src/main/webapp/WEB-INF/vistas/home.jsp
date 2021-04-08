@@ -27,14 +27,14 @@
 
     <main>
     	
-        <section class="Carta">
+        <section id="Carta" class="Carta">
 
             <h1 class="cartaTittle"> Carta</h1>
 
             <form action="" method="POST" class="seleccionarCartaForm">
 
                 <c:forEach items="${categorias}" var="categoria">
-                <h2 class="tituloCategoria"> Entrantes</h2>
+                <h2 class="tituloCategoria">  ${categoria} </h2>
 
                 <div class="elementosCarta">
                     <c:forEach items="${platos}" var="plato">
@@ -78,6 +78,11 @@
         </section>
 
     </form>
+
+        <c:forEach var="type" items="${mapa}">
+            ${type.key} , ${type.value}
+        </c:forEach>
+
     </main>
 
 

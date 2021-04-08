@@ -1,6 +1,7 @@
 package app.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import app.dao.CategoriaDAO;
@@ -32,7 +33,18 @@ public class TestController {
     public String mensaje(Model model) throws Exception {
 		String[] platos= {"PLato1", "Plato2", "Plato3"};
 		String[] categorias= {"entrantes", "principales"};
+		LinkedHashMap<String,List<Integer>> platosPorCategoria= new LinkedHashMap<>();
+		List<Integer> prueba= new ArrayList<>();
+		prueba.add(1);
+		platosPorCategoria.put("prueba",prueba);
+		model.addAttribute("mapa",platosPorCategoria);
 		//List<Plato> platos= p.getPlatoMenuActual();
+		for (Categoria categoria:c.getCategorias()
+			 ) {
+			System.out.println(categoria.getNombre());
+			System.out.println(categoria.getId_categoria());
+
+		}
         model.addAttribute("platos",platos);
         model.addAttribute("categorias", categorias);
 		return "home";
