@@ -31,22 +31,26 @@ public class TestController {
 	
 	@GetMapping("/home")
     public String mensaje(Model model) throws Exception {
-		String[] platos= {"PLato1", "Plato2", "Plato3"};
-		String[] categorias= {"entrantes", "principales"};
-		LinkedHashMap<String,List<Integer>> platosPorCategoria= new LinkedHashMap<>();
-		List<Integer> prueba= new ArrayList<>();
-		prueba.add(1);
-		platosPorCategoria.put("prueba",prueba);
-		model.addAttribute("mapa",platosPorCategoria);
-		//List<Plato> platos= p.getPlatoMenuActual();
-		for (Categoria categoria:c.getCategorias()
-			 ) {
-			System.out.println(categoria.getNombre());
-			System.out.println(categoria.getId_categoria());
 
+		LinkedHashMap<String,List<Plato>> platosPorCategoria= new LinkedHashMap<>();
+		List<Plato> platos= new ArrayList<Plato>();
+		Plato random= new Plato();
+		random.setNombre("random");
+		random.setDescripcion("random Descrpiton");
+		random.setId_plato(2);
+		List<Plato> listaRandom= new ArrayList<Plato>();
+		listaRandom.add(random);
+		platosPorCategoria.put("entrantes" , listaRandom );
+		/*
+		for (Categoria categoria:c.getCategorias())
+		{
+			//pedir platos en funcción la categoría
+			platos= p.getPlatoCartaCategoria(categoria.getId_categoria());
+			if(platos.size() > 0)
+				platosPorCategoria.put(categoria.getNombre(),platos);
 		}
-        model.addAttribute("platos",platos);
-        model.addAttribute("categorias", categorias);
+		 */
+		model.addAttribute("Carta",platosPorCategoria);
 		return "home";
     }
 

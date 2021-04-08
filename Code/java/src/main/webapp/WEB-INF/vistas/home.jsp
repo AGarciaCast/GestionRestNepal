@@ -33,21 +33,21 @@
 
             <form action="" method="POST" class="seleccionarCartaForm">
 
-                <c:forEach items="${categorias}" var="categoria">
-                <h2 class="tituloCategoria">  ${categoria} </h2>
+                <c:forEach items="${Carta}" var="categoria">
+                <h2 class="tituloCategoria">  ${categoria.key} </h2>
 
                 <div class="elementosCarta">
-                    <c:forEach items="${platos}" var="plato">
+                    <c:forEach items="${categoria.value}" var="plato">
                     <div class="elementoCarta">
                         <div class="buttomsElemento">
-                            <input type="checkbox" class="selectButtomCarta" name="seleccion" value="1" />
+                            <input type="checkbox" class="selectButtomCarta" name="seleccion" value="${plato.getId_categoria()}" />
                             <button type="button" class="unselectButtom">
                                 <i class="fas fa-undo"></i>
                             </button>
                         </div>
                         <div class="textElemento">
-                            <h2> Plato</h2>
-                            <h3> Descripción plato</h3>
+                            <h2>${plato.getNombre()}</h2>
+                            <h3>${plato.getDescripcion()}</h3>
                         </div>
                     </div>
                     </c:forEach>
