@@ -38,6 +38,7 @@ public class TestController {
 		random.setNombre("random");
 		random.setDescripcion("random Descrpiton");
 		random.setId_plato(2);
+		random.setPrecio((float) 9 );
 		List<Plato> listaRandom= new ArrayList<Plato>();
 		listaRandom.add(random);
 		platosPorCategoria.put("entrantes" , listaRandom );

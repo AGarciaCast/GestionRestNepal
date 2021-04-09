@@ -18,7 +18,7 @@
                     <a href="#Carta"> Carta</a>
                 </li>   
                 <li>
-                    <a href="#Menu">Menu</a>
+                    <a href="./menu">Menu</a>
                 </li>
             </ul>
         </nav>
@@ -48,6 +48,9 @@
                         <div class="textElemento">
                             <h2>${plato.getNombre()}</h2>
                             <h3>${plato.getDescripcion()}</h3>
+                        </div>
+                        <div class="precioELemento">
+                            <h2>${plato.getPrecio()}</h2>
                         </div>
                     </div>
                     </c:forEach>
