@@ -40,7 +40,7 @@
                     <c:forEach items="${categoria.value}" var="plato">
                     <div class="elementoCarta">
                         <div class="buttomsElemento">
-                            <input type="checkbox" class="selectButtomCarta" name="seleccion" value="${plato.getId_categoria()}" />
+                            <input type="checkbox" class="selectButtomCarta" name="seleccion" value="${plato.getId_plato()}" />
                             <button type="button" class="unselectButtom">
                                 <i class="fas fa-undo"></i>
                             </button>

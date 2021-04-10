@@ -34,6 +34,7 @@ public class TestController {
 
 		LinkedHashMap<String,List<Plato>> platosPorCategoria= new LinkedHashMap<>();
 		List<Plato> platos= new ArrayList<Plato>();
+		/*
 		Plato random= new Plato();
 		random.setNombre("random");
 		random.setDescripcion("random Descrpiton");
@@ -42,7 +43,7 @@ public class TestController {
 		List<Plato> listaRandom= new ArrayList<Plato>();
 		listaRandom.add(random);
 		platosPorCategoria.put("entrantes" , listaRandom );
-		/*
+		 */
 		for (Categoria categoria:c.getCategorias())
 		{
 			//pedir platos en funcción la categoría
@@ -50,7 +51,6 @@ public class TestController {
 			if(platos.size() > 0)
 				platosPorCategoria.put(categoria.getNombre(),platos);
 		}
-		 */
 		model.addAttribute("Carta",platosPorCategoria);
 		return "home";
     }
@@ -63,7 +63,7 @@ public class TestController {
 		for (int seleccion :selecciones) {
 				idsPlatos.add((Integer) seleccion);
 			}
-		//m.crearNuevoMenu(idsPlatos);
+		m.crearNuevoMenu(idsPlatos);
 		return  mensaje(model);
 	}
 
