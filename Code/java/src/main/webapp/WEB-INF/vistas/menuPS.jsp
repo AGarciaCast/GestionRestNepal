@@ -48,10 +48,11 @@
                      </div>
                      </c:forEach>
                 </div>
-
+                <div class="buttomEnviar">
                 <button type="submit" class="enviarSeleccionesCarta">
                     <i class="fas fa-plus-square"></i>
                 </button>
+                </div>
 
             </form>
 
