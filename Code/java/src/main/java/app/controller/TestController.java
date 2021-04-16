@@ -16,10 +16,11 @@ import app.dao.PlatoDAO;
 import app.model.Plato;
 import app.model.request.plato.section.PlatoRequestCategoria;
 
-
 @Controller
 public class TestController {
-	
+
+	private ArrayList<Integer> seleccionesMenu =new ArrayList<Integer>();
+
 	@Autowired
 	private PlatoDAO p;
 
@@ -86,9 +87,18 @@ public class TestController {
 
 	@GetMapping("/menu")
 	public String menu(Model model) throws Exception {
+		if(!seleccionesMenu.isEmpty())
+		{
+			seleccionesMenu.clear();
+		}
 		List<PlatoRequestCategoria> entrantes = p.getPlatosMenuActualCategoria("Entrantes");
 		model.addAttribute("entrantes",entrantes);
 		return "menuPP";
+	}
+	@PostMapping("/menu")
+	public String entranteSeleccionado(@RequestParam("seleccion") int seleccion, Model model) throws Exception {
+		seleccionesMenu.add(seleccion);
+		return  menuPS(model);
 	}
 
 	@GetMapping("/menuPS")
@@ -98,6 +108,12 @@ public class TestController {
 		return "menuPS";
 	}
 
+	@PostMapping("/menuPS")
+	public String segundoSeleccionado(@RequestParam("seleccion") int seleccion, Model model) throws Exception {
+		seleccionesMenu.add(seleccion);
+		return  menuPostre(model);
+	}
+
 	@GetMapping("/menuPostre")
 	public String menuPostre(Model model) throws Exception {
 		List<PlatoRequestCategoria> postres = p.getPlatosMenuActualCategoria("Postre");
@@ -105,6 +121,13 @@ public class TestController {
 		return "menuPostre";
 	}
 
+	@PostMapping("/menuPostre")
+	public String postreSeleccionado(@RequestParam("seleccion") int seleccion, Model model) throws Exception {
+		seleccionesMenu.add(seleccion);
+		//devolver selecciones
+		System.out.println(seleccionesMenu.size()+ seleccionesMenu.toString());
+		return  menuPostre(model);
+	}
 
 	@GetMapping("/login")
 	public String login(){

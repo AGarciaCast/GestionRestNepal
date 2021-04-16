@@ -30,13 +30,13 @@
 
             <h1 class="cartaTittle"> Menu</h1>
 
-            <form action="menuPostre" class="seleccionarCartaForm">
+            <form action="menuPS" method="POST" class="seleccionarCartaForm">
                 <p> Seleccione un segundo plato</p>
                 <div class="elementosCarta">
                      <c:forEach items="${segundos}" var="segundos">
                         <div class="elementoCarta">
                             <div class="buttomsElemento">
-                            <input type="radio" class="selectButtomCarta" name="seleccion" value="1"/>
+                            <input type="radio" class="selectButtomCarta" name="seleccion" value="${segundos.getId_plato()}"/>
                             <button type="button" class="unselectButtom">
                                 <i class="fas fa-undo"></i>
                             </button>
