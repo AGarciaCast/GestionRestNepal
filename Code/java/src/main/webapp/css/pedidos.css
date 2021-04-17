@@ -1,0 +1,45 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.seleccionesBarra{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+    margin: 2rem;
+
+}
+
+.platosSeleccionados{
+    flex: 1 1;
+    display: flex;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.platoSeleccionado{
+    flex: 1 1 20rem;
+    display:  flex;
+    justify-content: space-around;
+}
+
+.platoSeleccionado.hidden {
+    display: none;
+}
+
+
+.forwardButton , 
+.backButton {
+    margin: 2rem;
+    padding: 1rem;
+}
+
+.fa-step-forward ,
+.fa-step-backward {
+    pointer-events: none;
+}
