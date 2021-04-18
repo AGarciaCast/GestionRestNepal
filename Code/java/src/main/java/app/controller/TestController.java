@@ -68,11 +68,17 @@ public class TestController {
 		return  mensaje(model);
 	}
 
-    @GetMapping("/testDAO")
+	@GetMapping("/testDAO")
+	@ResponseBody
+	public Plato test() throws Exception {
+		return p.getInformacionPlato(1);
+	}
+   /* @GetMapping("/testDAO")
     @ResponseBody
 	public List<Plato> test() throws Exception {
 		return p.getPlatoCartaCategoria(1);
 	}
+*/
 
 	/*@GetMapping("/testDAO")
 	@ResponseBody

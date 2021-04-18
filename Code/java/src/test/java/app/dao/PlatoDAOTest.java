@@ -1,5 +1,6 @@
 package app.dao;
 
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -77,5 +78,26 @@ public class PlatoDAOTest extends GenericDaoTest{
 
         int dummyParam = 1;
         platoDAO.getPlatoCartaCategoria(dummyParam);
+    }
+
+    //Test para probar getInformacionPlato
+    @Test
+    public void getInformacionPlato_whenCalled_shouldExecuteQueryRunnerQueryMethod()
+            throws Exception {
+        int dummyParam = 1;
+        platoDAO.getInformacionPlato(dummyParam);
+
+        verify(queryRunner)
+                .query(eq(connection), anyString(), any(BeanHandler.class));
+    }
+
+    @Test(expected = SQLException.class)
+    public void getInformacionPlato_whenAnExceptionHappens_shouldThrowIt()
+            throws Exception {
+        when(queryRunner.query(any(Connection.class), anyString(), any()))
+                .thenThrow(SQLException.class);
+
+        int dummyParam = 1;
+        platoDAO.getInformacionPlato(dummyParam);
     }
 }

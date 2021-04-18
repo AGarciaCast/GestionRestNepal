@@ -3,10 +3,12 @@ package app.dao;
 
 import app.model.Plato;
 import app.model.request.plato.section.PlatoRequestCategoria;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,5 +87,18 @@ public class PlatoDAO extends GenericDAO {
 		}
 
 		return platosMenu;
+	}
+
+	//Consulta para obtener la información de un plato dada su id
+	public Plato getInformacionPlato (int id_plato) throws SQLException {
+  	Plato plato;
+  	String query = "SELECT id_plato,nombre,descripcion,precio,num_plato,id_categoria\n" +
+			"FROM plato\n" +
+			"WHERE id_plato ="+id_plato;
+  	try (Connection conn = connector.getConnection()) {
+  		plato =
+				queryRunner.query(conn, query, new BeanHandler<>(Plato.class));
+  	}
+  	return plato;
 	}
 }

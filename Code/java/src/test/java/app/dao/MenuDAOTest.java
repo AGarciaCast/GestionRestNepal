@@ -55,7 +55,7 @@ public class MenuDAOTest extends GenericDaoTest{
                 .batch(eq(connection), anyString(),eq(expectedBatchParams));
     }
 
-    //Test para ver si salta exception si se llamara a la query mal
+    //Test para ver si salta exception si se llamara a la query mal.....................
     @Test(expected = SQLException.class)
     public void crearNuevoMenu_whenAnExceptionHappensUpdate_shouldThrowIt()
             throws Exception {
