@@ -1,19 +1,14 @@
 package app.model;
 
+import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 public class Login {
 	 private String userName;
      private String password;
- 
-    public String getUserName() {
-        return userName;
-     }
-    public void setUserName(String userName) {
-        this.userName = userName;
-     }
-     public String getPassword() {
-        return password;
-     }
-     public void setPassword(String password) {
-        this.password = password;
-     }
 }

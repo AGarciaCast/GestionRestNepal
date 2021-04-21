@@ -4,7 +4,7 @@ import java.sql.*;
 import app.dao.connector.Connector;
 import org.springframework.stereotype.Component;
 public class LoginDAO {
-	public String authenticateUser(Login loginBean)
+	public boolean authenticateUser(Login loginBean)
     {
         String userName = loginBean.getUserName(); //Assign user entered values to temporary variables.
         String password = loginBean.getPassword();
@@ -16,7 +16,7 @@ public class LoginDAO {
         String userNameDB = "";
         String passwordDB = "";
         
-        return "LOL";
+        return true;
         /*
         try
         {

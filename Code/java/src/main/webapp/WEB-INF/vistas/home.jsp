@@ -93,7 +93,8 @@
 
         const bttomSeleccionarElementoCarta= document.querySelectorAll(".selectButtomCarta");
         const bttomDesseleccionarElementoCarta= document.querySelectorAll(".unselectButtom")
-
+        const formulario = document.querySelector(".seleccionarCartaForm");
+        getLogin();
         //ADD event listener
         bttomSeleccionarElementoCarta.forEach(function(buttom)
         {
@@ -106,6 +107,14 @@
 
 
         //functions
+
+        function getLogin(){
+            let login = localStorage.getItem("login");
+            if (login != null)
+                formulario.action="home"
+            else
+                formulario.action="pedido"
+        }
 
         function seleccionado(event){
             recibido=event.target;

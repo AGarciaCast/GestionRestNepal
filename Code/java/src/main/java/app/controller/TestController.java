@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import app.dao.CategoriaDAO;
+import app.dao.LoginDAO;
 import app.dao.MenuDAO;
 import app.model.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,7 +149,12 @@ public class TestController {
 	@PostMapping("/login")
 	public String login(Model m, @RequestParam("username")String nombre, @RequestParam("password")String password) throws Exception{
 		m.addAttribute("session",true);
-		return mensaje(m);
+		LoginDAO loginDAO= new LoginDAO();
+		app.model.Login loginInfo= new app.model.Login(nombre, password);
+		if(loginDAO.authenticateUser(loginInfo))
+			return mensaje(m);
+		else
+			return "login";
 	}
 
 }

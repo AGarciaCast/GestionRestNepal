@@ -6,24 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
-<script>
-function validate()
-{
-     var username = document.form.username.value;
-     var password = document.form.password.value;
 
-     if (username==null || username=="")
-     {
-     alert("Username cannot be blank");
-     return false;
-     }
-     else if(password==null || password=="")
-     {
-     alert("Password cannot be blank");
-     return false;
-     }
-}
-</script>
 </head>
 <body>
     <div style="text-align:center"><h1>Login  </h1> </div>
@@ -44,10 +27,38 @@ function validate()
          </tr>
          <tr>
          <td></td>
-         <td><input type="submit" value="Login"></input><input
+         <td><input type="submit" id="boton" value="Login"></input><input
          type="reset" value="Reset"></input></td>
          </tr>
         </table>
     </form>
+
+    <script>
+    function validate()
+    {
+         var username = document.form.username.value;
+         var password = document.form.password.value;
+
+         if (username==null || username=="")
+         {
+         alert("Username cannot be blank");
+         return false;
+         }
+         else if(password==null || password=="")
+         {
+         alert("Password cannot be blank");
+         return false;
+         }
+    }
+
+    const submit = document.getElementById("boton");
+    submit.addEventListener("click",login);
+
+    function login(){
+        localStorage.setItem("login", "");
+    }
+
+
+    </script>
 </body>
 </html>
