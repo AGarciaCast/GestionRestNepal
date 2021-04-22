@@ -31,7 +31,7 @@ public class ConnectorTest {
     ) {
       this.connector.getConnection();
 
-      mockedStatic.verify(() -> DriverManager.getConnection(Connector.DB_URL));
+      mockedStatic.verify(() -> DriverManager.getConnection(Connector.DB_URL, "tabernero@restnepal", "Triqui5_"));
     }
   }
 

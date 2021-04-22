@@ -13,8 +13,8 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 public class BusquedaDaoTest extends GenericDaoTest {
 /*
   @Autowired
