@@ -1,19 +1,18 @@
 package app.controller;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import app.dao.CategoriaDAO;
-import app.dao.LoginDAO;
-import app.dao.MenuDAO;
+import app.dao.*;
 import app.model.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import app.dao.PlatoDAO;
 import app.model.Plato;
 import app.model.request.plato.section.PlatoRequestCategoria;
 
@@ -30,6 +29,9 @@ public class TestController {
 
 	@Autowired
 	private MenuDAO m;
+
+	@Autowired
+	private PedidoDAO pedidoDAO;
 	
 	@GetMapping("/home")
     public String mensaje(Model model) throws Exception {
@@ -71,13 +73,16 @@ public class TestController {
 
 	@GetMapping("/testDAO")
 	@ResponseBody
-	public Plato test() throws Exception {
-		return p.getInformacionPlato(1);
+	public BigInteger test() throws Exception {
+		Hashtable <Integer, Integer> t = new Hashtable<>();
+		t.put(1,2);
+		t.put(2,3);
+		return pedidoDAO.crearNuevoPedido(t, "mi casa");
 	}
    /* @GetMapping("/testDAO")
     @ResponseBody
-	public List<Plato> test() throws Exception {
-		return p.getPlatoCartaCategoria(1);
+	public List<PlatoRequestCategoria> test() throws Exception {
+		return p.getPlatoMenuActual();
 	}
 */
 

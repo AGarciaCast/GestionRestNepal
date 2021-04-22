@@ -140,3 +140,14 @@ CREATE TABLE empleado_pedido
   FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
 );
 
+DROP TRIGGER IF EXISTS `rest`.`plato_pedido_AFTER_INSERT`;
+
+DELIMITER $$
+USE `rest`$$
+CREATE DEFINER=`tabernero`@`%` TRIGGER `plato_pedido_AFTER_INSERT` AFTER INSERT ON `plato_pedido` FOR EACH ROW BEGIN
+	DECLARE x FLOAT;
+    SET x = (SELECT NEW.cantidad*precio FROM plato WHERE id_plato=NEW.id_plato);
+	UPDATE pedido SET importe = importe + x
+	WHERE id_pedido=NEW.id_pedido;
+END$$
+DELIMITER ;
