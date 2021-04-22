@@ -38,7 +38,7 @@ public class PedidoDAOTest extends GenericDaoTest{
         pedidoDAO.crearNuevoPedido(platosPedidos, "mi casa");
 
         //parametros esperados en la query3
-        Object[][] expectedBatchParams = {{ 2, 25, 3}, {1, 25, 2}};
+        Object[][] expectedBatchParams = {{2, BigInteger.valueOf(25L), 3}, {1, BigInteger.valueOf(25L), 2}};
 
         //verificar querys
         verify(queryRunner)
