@@ -113,6 +113,7 @@
             if (login != null)
                 formulario.action="home"
             else
+                formulario.method="GET"
                 formulario.action="pedido"
         }
 

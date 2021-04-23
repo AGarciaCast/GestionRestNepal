@@ -15,6 +15,12 @@
 
 }
 
+.formulario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .platosSeleccionados{
     flex: 1 1;
     display: flex;

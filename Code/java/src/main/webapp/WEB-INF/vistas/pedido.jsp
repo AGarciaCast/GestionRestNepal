@@ -47,8 +47,9 @@
     </section>
 
 
-    <div style="text-align:center"><h1>Direccion y contraseña </h1> </div>
+    <div style="text-align:center"><h1>Direccion y tarjeta </h1> </div>
     <br>
+    <section class="formulario">
     <form action="" name="form"  method="post">
 
         <table align="center">
@@ -57,7 +58,7 @@
          <td><input type="text" name="direccion" /></td>
          </tr>
          <tr>
-         <td>Contraseña</td>
+         <td>Tarjeta</td>
          <td><input type="password" name="contraseña" /></td>
          </tr>
          <tr>
@@ -69,6 +70,7 @@
          </tr>
         </table>
     </form>
+    </section>
 
 
 

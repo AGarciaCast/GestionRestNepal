@@ -68,7 +68,7 @@ public class TestController {
 				idsPlatos.add((Integer) seleccion);
 			}
 		m.crearNuevoMenu(idsPlatos);
-		return  mensaje(model);
+		return  pedido(model);
 	}
 
 	@GetMapping("/testDAO")
