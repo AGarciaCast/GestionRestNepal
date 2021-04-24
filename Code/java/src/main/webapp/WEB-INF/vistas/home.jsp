@@ -111,10 +111,9 @@
         function getLogin(){
             let login = localStorage.getItem("login");
             if (login != null)
-                formulario.action="home"
+                formulario.action="hacerMenu"
             else
-                formulario.method="GET"
-                formulario.action="pedido"
+                formulario.action="hacerPedido"
         }
 
         function seleccionado(event){

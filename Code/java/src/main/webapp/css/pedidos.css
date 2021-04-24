@@ -10,16 +10,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 10vh;
+    min-height: 40vh;
     margin: 2rem;
 
 }
 
-.formulario{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .platosSeleccionados{
     flex: 1 1;
@@ -48,4 +44,86 @@
 .fa-step-forward ,
 .fa-step-backward {
     pointer-events: none;
+}
+
+
+
+
+
+
+.secformulario{
+    width: 35%;
+    margin: auto;
+    min-height: 45vh;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.secformulario .tittleForm{
+    text-align: center;
+    margin: 1rem;
+    padding: 1rem;
+}
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.campos{
+    display: flex;
+    margin: 2rem;
+    padding: 1rem;
+    justify-content: space-around;
+}
+
+.campos h1{
+    flex:  1 1;
+    padding: 1rem;
+    
+}
+.campos input {
+    padding: 1rem;
+}
+
+
+.buttomsPedido{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.bttomPedido{
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.bttomPedido.hidden{
+    display: none;
+}
+
+.dot{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+}
+.dot.dot-1{
+    background-color: beige;
+    transition: all 3s ease-in-out 0s;
+}
+.dot.dot-2{
+    background-color: beige;
+    transition: all 3s ease-in-out 1s;
+}
+.dot.dot-3{
+    background-color: beige;
+    transition: all 3s ease-in-out 2s;
+}
+
+.dot.dot-transition{
+    background-color: black;
+}
+
+.dot.hidden{
+    display: none;
 }

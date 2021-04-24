@@ -16,30 +16,12 @@
             <i class="fas fa-step-backward"></i>
         </button>
         <div class="platosSeleccionados">
-            <div class="platoSeleccionado">
-                <h2 class="plateName"> Plato 1</h2>
-                <h2 class="pricePlate"> Precio Plato</h2>
-            </div>
-            <div class="platoSeleccionado">
-                <h2 class="plateName"> Plato 2</h2>
-                <h2 class="pricePlate"> Precio Plato</h2>
-            </div>
-            <div class="platoSeleccionado">
-                <h2 class="plateName"> Plato 3</h2>
-                <h2 class="pricePlate"> Precio Plato</h2>
-            </div>
-            <div class="platoSeleccionado hidden">
-                <h2 class="plateName"> Plato 4</h2>
-                <h2 class="pricePlate"> Precio Plato</h2>
-            </div>
-            <div class="platoSeleccionado hidden">
-                <h2 class="plateName"> Plato 5</h2>
-                <h2 class="pricePlate"> Precio Plato</h2>
-            </div>
-            <div class="platoSeleccionado hidden">
-                <h2 class="plateName"> Plato 6</h2>
-                <h2 class="pricePlate"> Precio Plato</h2>
-            </div>
+            <c:forEach items="${platos}" var="plato">
+                <div class="platoSeleccionado">
+                    <h2 class="plateName"> ${plato.getNombre()}</h2>
+                    <h2 class="pricePlate"> ${plato.getPrecio()} </h2>
+                </div>
+            </c:forEach>
         </div>
         <button class="forwardButton">
             <i class="fas fa-step-forward"></i>
@@ -47,29 +29,28 @@
     </section>
 
 
-    <div style="text-align:center"><h1>Direccion y tarjeta </h1> </div>
-    <br>
-    <section class="formulario">
-    <form action="" name="form"  method="post">
-
-        <table align="center">
-         <tr>
-         <td>Direccion</td>
-         <td><input type="text" name="direccion" /></td>
-         </tr>
-         <tr>
-         <td>Tarjeta</td>
-         <td><input type="password" name="contraseña" /></td>
-         </tr>
-         <tr>
-         <td><span style="color:red"></span></td>
-         </tr>
-         <tr>
-         <td></td>
-         <td><input type="submit" value="Validar"></input></td>
-         </tr>
-        </table>
-    </form>
+    <section class="secformulario">
+        <h1 class="tittleForm">Direccion y tarjeta </h1>
+        <form action="" name="form"  method="post" class="formulario">
+            <div class="campos">
+                <h1>Direccion</h1>
+                <input type="text" name="direccion" />
+            </div>
+            <div class="campos">
+                <h1>Tarjeta</h1>
+                <input type="text" name="numeroTarjeta" class="tarjeta" />
+            </div>
+            <div class="buttomsPedido">
+                <span class="dot dot-1"></span>
+                <span class="dot dot-2"></span>
+                <span class="dot dot-3"></span>
+                <button type="submit" class="bttomPedido hidden"> 
+                    Hacer Pedido
+                </button>
+            </div>
+            
+            
+        </form>
     </section>
 
 
@@ -77,22 +58,68 @@
 
     <script language="JavaScript" type="text/javascript" >
 
+        //declare variables for top part
         let counter = 0;
         const numberElementstoRight = 2;
         const forwardButtom = document.querySelector(".forwardButton");
         const backButtom = document.querySelector(".backButton");
         const plates = document.getElementsByClassName("platoSeleccionado");
         const numberPlates= plates.length;
+        const dots= document.querySelectorAll(".dot");
+        const bttomPedido = document.querySelector(".bttomPedido");
+
+
         
 
-        //event listeners
+        function calcularPrecio()
+        {
+            let precio =0;
+            plates.forEach(plate =>
+             {
+                precio+=plate.getElementsByClassName("pricePlate")[0].innerHTML; 
+            })
+            return precio;
+        }
 
-        forwardButtom.addEventListener("click",moveRight);
-        backButtom.addEventListener("click",moveLeft); 
+        function setHiddenCircles()
+        {
+            dots.forEach(dot => {dot.classList.add("hidden")});
+        }
 
+        function setHiddenPlates(){
+            [primerplato, segundoplato,tercerplato, ...rest]= plates;
+            rest.forEach( plato => {
+                plato.classList.add("hidden");
+            })
+        }
 
-        //functions
+        
+        function setupHidden()
+        {
+            if ( calcularPrecio < 13 )
+            {
+                setHiddenCircles();
+                bttomPedido.classList.toggle("hidden");
 
+            }
+        }
+
+        //event listeners for top part
+        if(numberPlates >3){
+            setHiddenPlates();
+            forwardButtom.addEventListener("click",moveRight);
+            backButtom.addEventListener("click",moveLeft); 
+        }else {
+            forwardButtom.remove();
+            backButtom.remove();
+        }
+        
+        setupHidden();
+        
+
+        //functions for top screen 
+
+       
         function moveRight(){
             newtPlate=plates[numberPlates-1];
             newtPlate.classList.toggle("hidden");
@@ -119,7 +146,36 @@
 
 
         }
+        // declare variable for botton part
 
+        let timer, maxTime= 1000; 
+        const tarjeta= document.querySelector(".tarjeta");
+        
+
+        // add event listeners for botton part
+
+        tarjeta.addEventListener("keypress",keyPressed);
+        tarjeta.addEventListener("keyup",keyDown);
+
+        //function bottom screen
+
+        function keyPressed(event) {
+
+            //reinicio timer ya que si habia iniciado timer y vuelvo a escribir significa que no 
+            // ha terminado de escribir
+
+            window.clearTimeout(timer);
+
+        }
+
+        function keyDown(event){
+            window.clearTimeout(timer);
+            timer= window.setTimeout( () => {
+                dots.forEach(dot => {
+                    dot.classList.add("dot-transition")
+                })
+            }, maxTime);
+        }
     
     </script>
 </body>
