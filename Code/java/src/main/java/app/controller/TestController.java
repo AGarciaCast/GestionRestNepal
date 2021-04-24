@@ -163,6 +163,17 @@ public class TestController {
 		model.addAttribute("platos",platos);
 		return "pedido";
 	}
+	@PostMapping("/pedido")
+	public String crearPedido(@RequestParam("direccion") String direccion,Model model) throws Exception {
+		Hashtable <Integer, Integer> t = new Hashtable<>();
+		System.out.println(selecciones.size());
+		for(int i=0; i<selecciones.size() ; i++){
+			System.out.println(selecciones.get(i));
+			t.put(selecciones.get(i),1);
+		}
+		pedidoDAO.crearNuevoPedido(t,direccion);
+		return "pedido";
+	}
 
 	@GetMapping("/login")
 	public String login(){

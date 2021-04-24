@@ -31,7 +31,7 @@
 
     <section class="secformulario">
         <h1 class="tittleForm">Direccion y tarjeta </h1>
-        <form action="" name="form"  method="post" class="formulario">
+        <form action="pedido" name="form"  method="POST" class="formulario">
             <div class="campos">
                 <h1>Direccion</h1>
                 <input type="text" name="direccion" />
@@ -44,7 +44,7 @@
                 <span class="dot dot-1"></span>
                 <span class="dot dot-2"></span>
                 <span class="dot dot-3"></span>
-                <button type="submit" class="bttomPedido hidden"> 
+                <button type="submit" class="bttomPedido">
                     Hacer Pedido
                 </button>
             </div>
