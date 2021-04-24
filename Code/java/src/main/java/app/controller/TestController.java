@@ -59,15 +59,26 @@ public class TestController {
 		return "home";
     }
 
-    @PostMapping("/home")
-	public String gestionarSeleccionesCarta(@RequestParam("seleccion") int[] selecciones, Model model) throws Exception {
+    @PostMapping("/hacerMenu")
+	public String gestionarSeleccionesCarta(@RequestParam("seleccion") int[] elegidos, Model model) throws Exception {
 
-		List<Integer> idsPlatos= new ArrayList<Integer>();
+		List<Integer> ids= new ArrayList<>();
+
+		for (int seleccion :elegidos) {
+				ids.add(seleccion);
+			}
+		m.crearNuevoMenu(ids);
+		return  mensaje(model);
+	}
+
+	@PostMapping("/hacerPedido")
+	public String gestionarSeleccionesCartaPedido(@RequestParam("seleccion") int[] selecciones, Model model) throws Exception {
+
 
 		for (int seleccion :selecciones) {
-				idsPlatos.add((Integer) seleccion);
-			}
-		m.crearNuevoMenu(idsPlatos);
+			this.selecciones.add((Integer) seleccion);
+		}
+
 		return  pedido(model);
 	}
 
@@ -141,8 +152,15 @@ public class TestController {
 	}
 
 	@GetMapping("/pedido")
-	public String pedido(Model model) throws Exception {
+	public String pedido( Model model) throws Exception {
 
+		List<Plato> platos=new ArrayList<>();
+
+		for (int id: selecciones) {
+			platos.add(p.getInformacionPlato(id));
+		}
+		System.out.println(platos);
+		model.addAttribute("platos",platos);
 		return "pedido";
 	}
 
