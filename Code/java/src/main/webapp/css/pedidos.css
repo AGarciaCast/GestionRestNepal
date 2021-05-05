@@ -5,13 +5,17 @@
     box-sizing: border-box;
 }
 
+#pedido-tittle{
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
 
 .seleccionesBarra{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 40vh;
-    margin: 2rem;
+    margin: 1rem;
 
 }
 
@@ -27,7 +31,17 @@
 .platoSeleccionado{
     flex: 1 1 20rem;
     display:  flex;
+    flex-direction: column;
     justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(black,rgba(163, 154, 154, 0.692));
+    color: white;
+    border: 0.125rem solid #cacece;
+}
+
+.platoSeleccionado h2{
+   margin: 1rem;
+   padding: 1rem;
 }
 
 .platoSeleccionado.hidden {

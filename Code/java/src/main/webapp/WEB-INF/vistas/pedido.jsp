@@ -9,7 +9,7 @@
 </head>
 <body>
 
-
+    <h1 id="pedido-tittle">Pedido</h1>
     <section class="seleccionesBarra">
 
         <button class="backButton">
