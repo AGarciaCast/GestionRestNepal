@@ -67,17 +67,18 @@
         const numberPlates= plates.length;
         const dots= document.querySelectorAll(".dot");
         const bttomPedido = document.querySelector(".bttomPedido");
-
+        const verificacion= calcularPrecio() > 13 
 
         
 
         function calcularPrecio()
         {
             let precio =0;
-            plates.forEach(plate =>
-             {
-                precio+=plate.getElementsByClassName("pricePlate")[0].innerHTML; 
-            })
+            [...plates].forEach(plate =>{
+                precio+=parseFloat(plate.getElementsByClassName("pricePlate")[0].innerHTML);
+                console.log(precio);
+             })
+             console.log(precio);
             return precio;
         }
 
@@ -96,12 +97,12 @@
         
         function setupHidden()
         {
-            if ( calcularPrecio < 13 )
+            if ( !verificacion)
             {
+                console.log("ENTRE");
                 setHiddenCircles();
-                bttomPedido.classList.toggle("hidden");
-
             }
+            bttomPedido.classList.add("hidden");
         }
 
         //event listeners for top part
@@ -171,9 +172,22 @@
         function keyDown(event){
             window.clearTimeout(timer);
             timer= window.setTimeout( () => {
-                dots.forEach(dot => {
-                    dot.classList.add("dot-transition")
-                })
+                //esta funcion se ejecuta si y solo si, se ha cumplido el tiempo necesario
+
+                if (verificacion)
+                {
+                    dots.forEach(dot => {
+                        dot.classList.add("dot-transition")
+                    })
+                    //al añadir la clase, se comezara la transición, pasados 5 segundos ya se habra completado
+                    window.setTimeout( () =>{
+                        setHiddenCircles();
+                        bttomPedido.classList.toggle("hidden");
+                    }, 5000)
+                }else
+                {
+                    bttomPedido.classList.toggle("hidden");
+                }
             }, maxTime);
         }
     

@@ -8,7 +8,12 @@ import java.util.List;
 
 import app.dao.*;
 import app.model.Categoria;
+import app.model.Login;
+import app.model.RespuestaLogin;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -189,6 +194,13 @@ public class TestController {
 			return mensaje(m);
 		else
 			return "login";
+	}
+
+	@RequestMapping(value = "/login/prueba",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+	public String pruebaLogin(Model m, @RequestBody Login login)
+	{
+
+		return "OK";
 	}
 
 }

@@ -34,6 +34,7 @@
     </form>
 
     <script>
+        /*
     function validate()
     {
          var username = document.form.username.value;
@@ -50,12 +51,45 @@
          return false;
          }
     }
-
+    */
     const submit = document.getElementById("boton");
+    const username= document.form.username;
+    const password= document.form.password;
+    const url = "http://localhost:8080/login/prueba";
+
     submit.addEventListener("click",login);
 
-    function login(){
-        localStorage.setItem("login", "");
+    function login(event){
+        event.preventDefault();
+
+        let data= 
+        {
+            username: username.value,
+            password: password.value
+        }
+
+        let fetchData = {
+            method: 'POST',
+            body: data,
+            headers: new Headers()
+        }
+
+        fetch(url,fetchData).
+        then(response => {
+            response.json()
+        }).
+        then(function(data)
+        {
+            if (data.respuesta === "Ok")
+            {
+                localStorage.setItem("login", "");
+                submit.submit();
+            }
+        }).catch( ()=> {
+            alert("login fallido");
+        })
+
+        
     }
 
 
