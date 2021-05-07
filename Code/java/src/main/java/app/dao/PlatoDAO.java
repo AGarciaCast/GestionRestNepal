@@ -25,7 +25,8 @@ public class PlatoDAO extends GenericDAO {
 	    		"JOIN plato_menu AS pm ON p.id_plato=pm.id_plato " +
 	    		"JOIN menu AS m ON pm.id_menu=m.id_menu " +
 	    		"JOIN categoria AS c ON p.id_categoria=c.id_categoria " +
-	    		"WHERE m.menu_actual=TRUE;";
+	    		"WHERE m.menu_actual=TRUE " +
+			    "ORDER BY id_categoria;";
 
 	    //System.out.println(connector==null);
 	    try (Connection conn = connector.getConnection()) {
@@ -52,6 +53,26 @@ public class PlatoDAO extends GenericDAO {
 
 		try (Connection conn = connector.getConnection()) {
 			platos = queryRunner.query(conn, query, new BeanListHandler<>(Plato.class), id);
+		}
+
+		return platos;
+	}
+
+	public List<PlatoRequestCategoria> getPlatosCarta() throws Exception {
+		List<PlatoRequestCategoria> platos = new ArrayList<>();
+		String query = "SELECT p.id_plato AS id_plato, p.nombre AS nombre_plato, p.descripcion AS descripcion_plato, "+
+				"p.precio AS precio, p.num_plato AS num_plato, c.id_categoria AS id_categoria, " +
+				"c.nombre AS nombre_categoria, c.descripcion AS descripcion_categoria " +
+				"FROM plato AS p " +
+				"JOIN categoria AS c ON p.id_categoria=c.id_categoria " +
+				"JOIN plato_carta AS pc ON p.id_plato=pc.id_plato " +
+				"JOIN carta AS ca ON pc.id_carta=ca.id_carta " +
+				"JOIN temporada AS t ON ca.id_temporada=t.id_temporada " +
+				"WHERE t.nombre='primavera' " +
+				"ORDER BY id_categoria";
+
+		try (Connection conn = connector.getConnection()) {
+			platos = queryRunner.query(conn, query, new BeanListHandler<>(PlatoRequestCategoria.class));
 		}
 
 		return platos;

@@ -89,18 +89,10 @@ public class TestController {
 
 	@GetMapping("/testDAO")
 	@ResponseBody
-	public BigInteger test() throws Exception {
-		Hashtable <Integer, Integer> t = new Hashtable<>();
-		t.put(1,2);
-		t.put(2,3);
-		return pedidoDAO.crearNuevoPedido(t, "mi casa");
-	}
-   /* @GetMapping("/testDAO")
-    @ResponseBody
 	public List<PlatoRequestCategoria> test() throws Exception {
-		return p.getPlatoMenuActual();
+		return p.getPlatosCarta();
 	}
-*/
+
 
 	/*@GetMapping("/testDAO")
 	@ResponseBody
