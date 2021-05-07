@@ -56,7 +56,8 @@
     const username= document.form.username;
     const password= document.form.password;
     const url = "http://localhost:8080/login/prueba";
-
+    localStorage.setItem("login", "logueado");
+    /*
     submit.addEventListener("click",login);
 
     function login(event){
@@ -88,10 +89,10 @@
         }).catch( ()=> {
             alert("login fallido");
         })
-
+        
         
     }
-
+    */
 
     </script>
 </body>

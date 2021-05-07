@@ -59,18 +59,7 @@
 
         </section>
 
-        <section class="seleccionadosCarta">
-            <!--Esta seccion se mantiene al final de la pñagina y muestra los platos que se han ido seleccionando de forma horizontal y con un boton
-                para desseleccionar, si se hace bien, si ya no entran en la pagina , podras ir moviendote horizontamente por ella-->
-            <div class="elementosSeleccionadosCarta">
-                <div class="elementoSeleccionadoCarta">
-                    <button type="button" class="unselectButtom">
-                        <i class="fas fa-undo"></i>
-                    </button>
-                    <h2>Primer Plato</h2>
-                </div>
-            </div>
-        </section>
+        
 
     </form>
     </main>
