@@ -9,9 +9,10 @@ import java.sql.SQLException;
 @Component
 public class Connector {
     public static final String DB_URL =
-    		"jdbc:mysql://restnepal.mysql.database.azure.com:3306/rest?useSSL=true&requireSSL=false&useJDBCCompliantTimezoneShift=true&serverTimezone=UTC";       
-     
-      public Connection getConnection() {
+    //		"jdbc:mysql://restnepal.mysql.database.azure.com:3306/rest?useSSL=true&requireSSL=false&useJDBCCompliantTimezoneShift=true&serverTimezone=UTC";
+            "jdbc:mysql://34.76.59.62:3306/rest?useSSL=true&requireSSL=false&useJDBCCompliantTimezoneShift=true&serverTimezone=UTC";
+
+    public Connection getConnection() {
         Connection conn = null;
          
         try {
