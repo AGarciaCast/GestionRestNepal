@@ -1,11 +1,16 @@
 package app.dao;
 
+import app.model.Pedido;
+import app.model.request.plato.section.PlatoRequestCategoria;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.ArrayList;
 
 @Repository
 public class PedidoDAO  extends GenericDAO{
@@ -34,5 +39,21 @@ public class PedidoDAO  extends GenericDAO{
         }
         return id_pedido;
     }
+
+    public List<Pedido> getPedidosDelCliente(int id) throws Exception {
+        List<Pedido> pedidos = new ArrayList<Pedido>();
+        String query =  "SELECT p.id_pedido, p.direccion, p.fecha, p.hora_entrega, p.importe, p.id_estado " +
+                        "FROM pedido as p " +
+                        "JOIN cliente_pedido as cp " +
+                        "ON p.id_pedido=cp.id_pedido " +
+                        "WHERE cp.id_cliente=?";
+
+        try (Connection conn = connector.getConnection()) {
+            pedidos = queryRunner.query(conn, query, new BeanListHandler<>(Pedido.class), id);
+        }
+
+        return pedidos;
+    }
+
 
 }

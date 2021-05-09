@@ -1,12 +1,14 @@
 package app.controller;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 import app.dao.*;
+import app.model.Pedido;
 import app.model.Categoria;
 import app.model.Login;
 import app.model.RespuestaLogin;
@@ -28,6 +30,9 @@ public class TestController {
 
 	@Autowired
 	private PlatoDAO p;
+
+	@Autowired
+	private FacturacionDAO f;
 
 	@Autowired
 	private CategoriaDAO c;
@@ -89,10 +94,16 @@ public class TestController {
 
 	@GetMapping("/testDAO")
 	@ResponseBody
-	public List<PlatoRequestCategoria> test() throws Exception {
-		return p.getPlatosCarta();
+	public double test() throws Exception {
+		LocalDateTime rightNow = LocalDateTime.now();
+		return f.getFacturacionDia(rightNow);
 	}
 
+	/*@GetMapping("/testDAO")
+	@ResponseBody
+	public List<PlatoRequestCategoria> test() throws Exception {
+		return p.getPlatosCarta();
+	}*/
 
 	/*@GetMapping("/testDAO")
 	@ResponseBody
