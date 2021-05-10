@@ -48,16 +48,7 @@ public class TestController {
 
 		LinkedHashMap<String,List<Plato>> platosPorCategoria= new LinkedHashMap<>();
 		List<Plato> platos= new ArrayList<Plato>();
-		/*
-		Plato random= new Plato();
-		random.setNombre("random");
-		random.setDescripcion("random Descrpiton");
-		random.setId_plato(2);
-		random.setPrecio((float) 9 );
-		List<Plato> listaRandom= new ArrayList<Plato>();
-		listaRandom.add(random);
-		platosPorCategoria.put("entrantes" , listaRandom );
-		 */
+
 		for (Categoria categoria:c.getCategorias())
 		{
 			//pedir platos en funcción la categoría
@@ -239,6 +230,27 @@ public class TestController {
 	{
 
 		return "OK";
+	}
+
+
+	@GetMapping("/gestionarPedido")
+	public String gestionPedidos (Model model) throws Exception {
+
+		return  "gestionarPedidos";
+
+	}
+	@PostMapping("/borrarPedido/{id}")
+	public void borrarPedido(@PathVariable int id, Model model)
+	{
+		System.out.println(id);
+	}
+
+	@PostMapping("/modificarPedido/{id}")
+	public String mdoficarPedido(@PathVariable int id, Model model)
+	{
+		System.out.println(id);
+		System.out.println("HOLA");
+		return "gestionarPedidos";
 	}
 
 }

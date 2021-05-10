@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+#tittle{
+    min-height: 20vh;
+    text-align: center;
+    margin: 2rem;
+    padding: 1rem;
+    
+}
+
+.lista-pedidos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 70vh;
+    align-items: center;
+
+}
+
+.pedido{
+    flex-basis: 25rem;
+    display: flex;
+    justify-content: center;
+}
+
+.pedido-info{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.pedido-buttons{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.pedido-buttons button , .pedido-info h2{
+    margin: 0.5rem;
+    font-size: xx-large;
+}
+
+i{
+    pointer-events: none;
+}
