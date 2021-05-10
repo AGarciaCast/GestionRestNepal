@@ -65,5 +65,14 @@ public class PedidoDAO  extends GenericDAO{
         return pedidos;
     }
 
+    //Marca un pedido como anulado
+    public void eliminarPedido(int id_pedido) throws Exception {
+        String query =  "UPDATE pedido SET anulado = 0 WHERE id_pedido="+id_pedido+";";
+
+        try (Connection conn = connector.getConnection()) {
+            queryRunner.update(conn,query);
+        }
+    }
+
 
 }

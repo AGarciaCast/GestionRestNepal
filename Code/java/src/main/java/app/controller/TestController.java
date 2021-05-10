@@ -91,7 +91,12 @@ public class TestController {
 
 		return  pedido(model);
 	}
-
+	@GetMapping("/testDAO")
+	@ResponseBody
+	public void test() throws Exception {
+		pedidoDAO.eliminarPedido(1);
+	}
+	/*
 	@GetMapping("/testDAO")
 	@ResponseBody
 	public Object test() throws Exception {
@@ -102,6 +107,7 @@ public class TestController {
 
 		return res;
 	}
+	 */
 	/*
 	@GetMapping("/testDAO")
 	@ResponseBody
