@@ -52,7 +52,7 @@ public class PedidoDAO  extends GenericDAO{
 
     public List<Pedido> getPedidosDelCliente(int id) throws Exception {
         List<Pedido> pedidos = new ArrayList<Pedido>();
-        String query =  "SELECT p.id_pedido, p.direccion, p.fecha, p.hora_entrega, p.importe, p.id_estado " +
+        String query =  "SELECT p.id_pedido, p.direccion, p.fecha, p.hora_entrega, p.importe, p.id_estado, p.anulado " +
                         "FROM pedido as p " +
                         "JOIN cliente_pedido as cp " +
                         "ON p.id_pedido=cp.id_pedido " +

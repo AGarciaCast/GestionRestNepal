@@ -21,4 +21,5 @@ public class Pedido {
 	  private LocalDateTime hora_entrega;
 	  private Float importe;
 	  private Integer id_estado;
+	  private Byte anulado;
 }
