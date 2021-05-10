@@ -91,11 +91,23 @@ public class TestController {
 
 		return  pedido(model);
 	}
+
+	@GetMapping("/testDAO")
+	@ResponseBody
+	public void test() throws Exception {
+		Hashtable<Integer, Integer> platosPedidos = new Hashtable<>();
+		platosPedidos.put(1,7);
+		platosPedidos.put(8,3);
+		pedidoDAO.modificarPedido(platosPedidos,2);
+	}
+
+	/*
 	@GetMapping("/testDAO")
 	@ResponseBody
 	public void test() throws Exception {
 		pedidoDAO.eliminarPedido(1);
 	}
+	 */
 	/*
 	@GetMapping("/testDAO")
 	@ResponseBody
