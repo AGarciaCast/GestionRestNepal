@@ -14,8 +14,12 @@ import java.util.ArrayList;
 
 @Repository
 public class PedidoDAO  extends GenericDAO{
-
-    public BigInteger crearNuevoPedido(Hashtable<Integer, Integer> platos_pedido, String direccion) throws Exception {
+    /*
+    id_cliente
+        - Si es cliente registrado su id
+        - Si no esta registrado -> -1
+     */
+    public BigInteger crearNuevoPedido(Hashtable<Integer, Integer> platos_pedido, String direccion, int id_cliente) throws Exception {
         BigInteger id_pedido=null;
         String query1 = "INSERT INTO pedido (direccion, fecha, hora_entrega, importe, id_estado) " +
                         "VALUES (?, NOW(), NOW() + INTERVAL 30 MINUTE, 0, 1);";
@@ -36,6 +40,12 @@ public class PedidoDAO  extends GenericDAO{
                     )
                     .toArray(Object[][]::new);
             queryRunner.batch(conn, query2, params);
+        }
+        if(id_cliente >= 0){
+            String query3 = "INSERT INTO cliente_pedido VALUES (?,?)";
+            try (Connection conn = connector.getConnection()) {
+                queryRunner.insert(conn, query3, new ScalarHandler<>(), id_cliente, id_pedido);
+            }
         }
         return id_pedido;
     }

@@ -35,7 +35,7 @@ public class PedidoDAOTest extends GenericDaoTest{
         Hashtable<Integer, Integer> platosPedidos = new Hashtable<>();
         platosPedidos.put(1,2);
         platosPedidos.put(2,3);
-        pedidoDAO.crearNuevoPedido(platosPedidos, "mi casa");
+        pedidoDAO.crearNuevoPedido(platosPedidos, "mi casa", -1);
 
         //parametros esperados en la query3
         Object[][] expectedBatchParams = {{2, BigInteger.valueOf(25L), 3}, {1, BigInteger.valueOf(25L), 2}};
@@ -59,7 +59,7 @@ public class PedidoDAOTest extends GenericDaoTest{
         Hashtable<Integer, Integer> platosPedidos = new Hashtable<>();
         platosPedidos.put(1,2);
         platosPedidos.put(2,3);
-        pedidoDAO.crearNuevoPedido(platosPedidos, "mi casa");
+        pedidoDAO.crearNuevoPedido(platosPedidos, "mi casa", -1);
     }
 
     @Test(expected = SQLException.class)
@@ -73,7 +73,7 @@ public class PedidoDAOTest extends GenericDaoTest{
         Hashtable<Integer, Integer> platosPedidos = new Hashtable<>();
         platosPedidos.put(1,2);
         platosPedidos.put(2,3);
-        pedidoDAO.crearNuevoPedido(platosPedidos, "mi casa");
+        pedidoDAO.crearNuevoPedido(platosPedidos, "mi casa", -1);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class PedidoDAOTest extends GenericDaoTest{
         Hashtable<Integer, Integer> platosPedidos = new Hashtable<>();
         platosPedidos.put(1,2);
         platosPedidos.put(2,3);
-        assertThat(pedidoDAO.crearNuevoPedido(platosPedidos, "mi casa")).isEqualTo(25);
+        assertThat(pedidoDAO.crearNuevoPedido(platosPedidos, "mi casa", -1)).isEqualTo(25);
     }
 
 }

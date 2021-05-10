@@ -8,10 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import app.dao.*;
-import app.model.Pedido;
-import app.model.Categoria;
-import app.model.Login;
-import app.model.RespuestaLogin;
+import app.model.*;
+import app.model.request.empleado.section.EmpleadoRequestRol;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import app.model.Plato;
 import app.model.request.plato.section.PlatoRequestCategoria;
 
 @Controller
@@ -33,6 +30,9 @@ public class TestController {
 
 	@Autowired
 	private FacturacionDAO f;
+
+	@Autowired
+	private LoginDAO l;
 
 	@Autowired
 	private CategoriaDAO c;
@@ -94,10 +94,39 @@ public class TestController {
 
 	@GetMapping("/testDAO")
 	@ResponseBody
+	public Object test() throws Exception {
+		Hashtable<Integer, Integer> platosPedidos = new Hashtable<>();
+		platosPedidos.put(1,2);
+		platosPedidos.put(2,3);
+		BigInteger res = pedidoDAO.crearNuevoPedido(platosPedidos, "mi casa", 2);
+
+		return res;
+	}
+	/*
+	@GetMapping("/testDAO")
+	@ResponseBody
+	public Object test() throws Exception {
+		Login usuario = new Login("Alex", "123");
+		Object res = l.authenticateUser(usuario);
+		if(res == null)
+			System.out.println("NULL");
+		else if(res instanceof EmpleadoRequestRol)
+			System.out.println("EMPLEADO");
+		else if(res instanceof Cliente)
+			System.out.println("CLIENTE");
+
+		return res;
+	}
+	 */
+
+	/*
+	@GetMapping("/testDAO")
+	@ResponseBody
 	public double test() throws Exception {
 		LocalDateTime rightNow = LocalDateTime.now();
 		return f.getFacturacionDia(rightNow);
 	}
+	*/
 
 	/*@GetMapping("/testDAO")
 	@ResponseBody
@@ -179,7 +208,7 @@ public class TestController {
 			System.out.println(selecciones.get(i));
 			t.put(selecciones.get(i),1);
 		}
-		pedidoDAO.crearNuevoPedido(t,direccion);
+		pedidoDAO.crearNuevoPedido(t,direccion, -1);
 		return "pedido";
 	}
 
@@ -193,7 +222,7 @@ public class TestController {
 		m.addAttribute("session",true);
 		LoginDAO loginDAO= new LoginDAO();
 		app.model.Login loginInfo= new app.model.Login(nombre, password);
-		if(loginDAO.authenticateUser(loginInfo))
+		if(loginDAO.authenticateUser(loginInfo)!=null)
 			return mensaje(m);
 		else
 			return "login";

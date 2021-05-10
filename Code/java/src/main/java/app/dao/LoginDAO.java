@@ -1,44 +1,47 @@
 package app.dao;
+
+import app.model.Cliente;
 import app.model.Login;
-import java.sql.*;
-import app.dao.connector.Connector;
-import org.springframework.stereotype.Component;
-public class LoginDAO {
-	public boolean authenticateUser(Login loginBean)
-    {
+import app.model.request.empleado.section.EmpleadoRequestRol;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.springframework.stereotype.Repository;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+@Repository
+public class LoginDAO extends GenericDAO{
+    /*
+    Devuelve un Object:
+        - Si es un cliente -> Cliente
+        - Si es un empleado -> EmpleadoRequestRol
+        - Si no coincide con un cliente ni empleado -> null
+     */
+	public Object authenticateUser(Login loginBean) throws SQLException {
         String userName = loginBean.getUserName(); //Assign user entered values to temporary variables.
         String password = loginBean.getPassword();
 
-        Connection con = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        Object usuario=null;
+        String query = "SELECT id_empleado,usuario, e.id_rol AS id_rol, r.nombre AS nombre_rol " +
+                "FROM empleado AS e " +
+                "JOIN rol AS r ON e.id_rol=r.id_rol " +
+                "WHERE e.usuario= ? and e.contrasenya=?;";
 
-        String userNameDB = "";
-        String passwordDB = "";
-        
-        return true;
-        /*
-        try
-        {
-            con = Connector.getConnection(); //Fetch database connection object
-            statement = con.createStatement(); //Statement is used to write queries. Read more about it.
-            resultSet = statement.executeQuery("select userName,password from users"); //the table name is users and userName,password are columns. Fetching all the records and storing in a resultSet.
+        try (Connection conn = connector.getConnection()) {
+            usuario = queryRunner.query(conn, query, new BeanHandler<>(EmpleadoRequestRol.class), userName, password);
+        }
+        if(usuario==null){
+            query = "SELECT id_cliente, usuario, direccion " +
+                    "FROM cliente " +
+                    "WHERE usuario= ? and contrasenya=?;";
 
-            while(resultSet.next()) // Until next row is present otherwise it return false
-            {
-             userNameDB = resultSet.getString("userName"); //fetch the values present in database
-             passwordDB = resultSet.getString("password");
-
-              if(userName.equals(userNameDB) && password.equals(passwordDB))
-              {
-                 return "SUCCESS"; ////If the user entered values are already present in the database, which means user has already registered so return a SUCCESS message.
-              }
+            try (Connection conn = connector.getConnection()) {
+                usuario = queryRunner.query(conn, query, new BeanHandler<>(Cliente.class), userName, password);
             }
-            catch(SQLException e)
-            {
-               e.printStackTrace();
-            }
-            return "Invalid user credentials"; // Return appropriate message in case of failure
-        }*/
+
+        }
+
+        return usuario;
+
     }
 }
