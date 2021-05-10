@@ -83,7 +83,9 @@
         const bttomSeleccionarElementoCarta= document.querySelectorAll(".selectButtomCarta");
         const bttomDesseleccionarElementoCarta= document.querySelectorAll(".unselectButtom")
         const formulario = document.querySelector(".seleccionarCartaForm");
-        getLogin();
+        const bttomSubmit = document.querySelector(".enviarSeleccionesCarta");
+        checkLogin();
+        checkPedido();
         //ADD event listener
         bttomSeleccionarElementoCarta.forEach(function(buttom)
         {
@@ -94,15 +96,21 @@
             buttom.addEventListener("click",seleccionado);
         });
 
+        bttomSubmit.addEventListener("click",submitSeleccionados)
 
         //functions
 
-        function getLogin(){
+        function checkLogin(){
             let login = localStorage.getItem("login");
             if (login != null)
                 formulario.action="hacerMenu"
             else
                 formulario.action="hacerPedido"
+        }
+        function checkPedido(){
+            let pedido_id= localStorage.getItem("pedido_id");
+            if (pedido_id != null)
+                formulario.action="modificarPedido/"+pedido_id
         }
 
         function seleccionado(event){
@@ -124,6 +132,18 @@
                 elementoCarta.classList.toggle("elementoCartaSelecionado");
             }
             
+        }
+
+        function submitSeleccionados(event)
+        {
+            event.preventDefault();
+
+            if (localStorage.getItem("pedido_id"))
+            {
+                localStorage.removeItem("pedido_id");
+            }
+            formulario.submit();
+
         }
 
     </script>
