@@ -11,7 +11,7 @@ public class FacturacionDAO extends GenericDAO {
 
     public double getFacturacionDia(LocalDateTime fecha) throws Exception {
         double facturacion;
-        String query = "SELECT SUM(importe) AS VolumenFacturado FROM pedido WHERE fecha=?";
+        String query = "SELECT SUM(importe) AS VolumenFacturado FROM pedido WHERE fecha=? AND anulado=1";
         try (Connection conn = connector.getConnection()) {
             facturacion = queryRunner.query(conn, query, new ScalarHandler<>(), fecha);
         }
