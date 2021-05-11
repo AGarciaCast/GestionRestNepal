@@ -243,15 +243,35 @@ public class TestController {
 
 	@PostMapping("/login")
 	public String login(Model m, @RequestParam("username")String nombre, @RequestParam("password")String password) throws Exception{
-		m.addAttribute("session",true);
+		//m.addAttribute("session",true);
 		LoginDAO loginDAO= new LoginDAO();
 		app.model.Login loginInfo= new app.model.Login(nombre, password);
-		if(loginDAO.authenticateUser(loginInfo)!=null)
-			return mensaje(m);
-		else
-			return "login";
-	}
 
+		/*
+		Aqui es null, luego no tiene permisos
+		 */
+		if (loginDAO.authenticateUser(loginInfo) == null) {
+			return mensaje(m);
+		}
+     	/*
+		Aqui es cliente, luego tiene los permisos de cliente registrado
+		 */
+		else if(loginDAO.authenticateUser(loginInfo) instanceof Cliente) {
+			return "login";
+		}
+
+		/*
+		Aqui es empleado, luego tiene los permisos de cambiar el menu
+		 */
+		else if(loginDAO.authenticateUser(loginInfo) instanceof EmpleadoRequestRol) {
+			return "login";
+		}
+		/*
+		Nunca deberia llegar hasta aqui, pero por si acaso
+		 */
+		else
+			throw new Exception("Ni es cliente, ni empleado, ni null...?");
+	}
 	@RequestMapping(value = "/login/prueba",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
 	public String pruebaLogin(Model m, @RequestBody Login login)
 	{
