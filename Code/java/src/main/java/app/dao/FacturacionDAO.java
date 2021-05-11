@@ -17,6 +17,6 @@ public class FacturacionDAO extends GenericDAO {
         try (Connection conn = connector.getConnection()) {
             facturacion = queryRunner.query(conn, query, new ScalarHandler<>(), fecha);
         }
-        return facturacion == null ? 0.0 : facturacion;
+        return facturacion == null ? 0.0 : Math.round(facturacion*10.0)/10.0;
     }
 }

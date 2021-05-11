@@ -302,5 +302,18 @@ public class TestController {
 		return "gestionarPedidos";
 	}
 
+	@GetMapping("/facturacion")
+	public String facturacion(Model model) throws Exception {
+		return "gestor";
+	}
+	@PostMapping("/facturacion")
+	public String facturacionSel(Model model, @RequestParam("fecha_inicio")String inicio) throws Exception {
+		double costeFactura=f.getFacturacionDia(inicio);
+		System.out.println(costeFactura);
+		model.addAttribute("costeFactura",costeFactura);
+		return "gestorFactura";
+	}
+
+
 }
 
