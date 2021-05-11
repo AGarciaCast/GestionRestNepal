@@ -244,26 +244,25 @@ public class TestController {
 	@PostMapping("/login")
 	public String login(Model m, @RequestParam("username")String nombre, @RequestParam("password")String password) throws Exception{
 		//m.addAttribute("session",true);
-		LoginDAO loginDAO= new LoginDAO();
 		app.model.Login loginInfo= new app.model.Login(nombre, password);
 
 		/*
 		Aqui es null, luego no tiene permisos
 		 */
-		if (loginDAO.authenticateUser(loginInfo) == null) {
+		if (l.authenticateUser(loginInfo) == null) {
 			return mensaje(m);
 		}
      	/*
 		Aqui es cliente, luego tiene los permisos de cliente registrado
 		 */
-		else if(loginDAO.authenticateUser(loginInfo) instanceof Cliente) {
+		else if(l.authenticateUser(loginInfo) instanceof Cliente) {
 			return "login";
 		}
 
 		/*
 		Aqui es empleado, luego tiene los permisos de cambiar el menu
 		 */
-		else if(loginDAO.authenticateUser(loginInfo) instanceof EmpleadoRequestRol) {
+		else if(l.authenticateUser(loginInfo) instanceof EmpleadoRequestRol) {
 			return "login";
 		}
 		/*
@@ -287,16 +286,19 @@ public class TestController {
 
 	}
 	@PostMapping("/borrarPedido/{id}")
-	public void borrarPedido(@PathVariable int id, Model model)
+	public void borrarPedido(@PathVariable int id, Model model) throws Exception
 	{
-		System.out.println(id);
+		pedidoDAO.eliminarPedido(id);
 	}
 
 	@PostMapping("/modificarPedido/{id}")
-	public String mdoficarPedido(@PathVariable int id, Model model)
+	public String modificarPedido(@PathVariable int id, @RequestParam("seleccion") int[] ArrayIds, Model model) throws Exception
 	{
-		System.out.println(id);
-		System.out.println("HOLA");
+		Hashtable <Integer, Integer> t = new Hashtable<>();
+		for(int idA : ArrayIds){
+			t.put(idA,1);
+		}
+		pedidoDAO.modificarPedido(t,id);
 		return "gestionarPedidos";
 	}
 
