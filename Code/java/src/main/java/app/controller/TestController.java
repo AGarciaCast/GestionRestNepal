@@ -83,14 +83,16 @@ public class TestController {
 		return  pedido(model);
 	}
 
+	/*
 	@GetMapping("/testDAO")
 	@ResponseBody
 	public void test() throws Exception {
 		Hashtable<Integer, Integer> platosPedidos = new Hashtable<>();
 		platosPedidos.put(1,7);
 		platosPedidos.put(8,3);
-		pedidoDAO.modificarPedido(platosPedidos,2);
+		pedidoDAO.modificarPedido(platosPedidos, 2);
 	}
+	*/
 
 	/*
 	@GetMapping("/testDAO")
@@ -98,7 +100,8 @@ public class TestController {
 	public void test() throws Exception {
 		pedidoDAO.eliminarPedido(1);
 	}
-	 */
+	*/
+
 	/*
 	@GetMapping("/testDAO")
 	@ResponseBody
@@ -110,7 +113,8 @@ public class TestController {
 
 		return res;
 	}
-	 */
+	*/
+
 	/*
 	@GetMapping("/testDAO")
 	@ResponseBody
@@ -126,24 +130,34 @@ public class TestController {
 
 		return res;
 	}
-	 */
+	*/
 
 	/*
 	@GetMapping("/testDAO")
 	@ResponseBody
 	public double test() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		return f.getFacturacionDia(rightNow);
+		LocalDateTime fecha = LocalDateTime.of(2021, 5, 9, 12, 0);
+		// LocalDateTime fecha = LocalDateTime.now();
+		return f.getFacturacionDia(fecha);
 	}
 	*/
 
-	/*@GetMapping("/testDAO")
+	@GetMapping("/testDAO")
+	@ResponseBody
+	public List<Pedido> test() throws Exception {
+		return pedidoDAO.getPedidosDelCliente(1);
+	}
+
+	/*
+	@GetMapping("/testDAO")
 	@ResponseBody
 	public List<PlatoRequestCategoria> test() throws Exception {
 		return p.getPlatosCarta();
-	}*/
+	}
+	*/
 
-	/*@GetMapping("/testDAO")
+	/*
+	@GetMapping("/testDAO")
 	@ResponseBody
 	public List<PlatoRequestCategoria> test() throws Exception {
 		List<Integer> miLista = new ArrayList<Integer>();
@@ -152,7 +166,8 @@ public class TestController {
 		miLista.add(3);
 		m.crearNuevoMenu(miLista);
 		return p.getPlatoMenuActual();
-	}*/
+	}
+	*/
 
 	@GetMapping("/menu")
 	public String menu(Model model) throws Exception {

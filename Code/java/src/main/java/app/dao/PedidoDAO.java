@@ -60,7 +60,7 @@ public class PedidoDAO  extends GenericDAO{
                         "WHERE cp.id_cliente=?";
 
         try (Connection conn = connector.getConnection()) {
-            pedidos = queryRunner.query(conn, query, new BeanListHandler<>(Pedido.class), id);
+            pedidos = queryRunner.query(conn, query, new PedidoListHandler(), id);
         }
 
         return pedidos;
