@@ -55,7 +55,6 @@
     {
         console.log(event.target);
         const pedido_id= event.target.value;
-        event.target.parentElement.parentElement.remove();
         borrarPedidoAPI(pedido_id,"http://localhost:8080/borrarPedido/"+pedido_id)
         
     }
@@ -63,20 +62,17 @@
 
     function borrarPedidoAPI(id,url){
 
-        let data= 
-        {
-            pedido_id: id
-        }
+        
 
         let fetchData = {
             method: 'POST',
-            body: data,
+            body: null,
             headers: new Headers()
         }
 
-        fetch(url,fetchData).
+        fetch(url, fetchData).
         catch( ()=> {
-            alert("login fallido");
+            alert("el pedido no pudo ser borrado");
         })
         
         

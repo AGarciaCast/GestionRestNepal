@@ -11,15 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 @ToString
 
 public class RespuestaLogin {
-    private String respuesta;
+    private String categoria;
+    private int  id;
 
 
-    public void loginCompletado()
-    {
-        this.setRespuesta("Ok");
+    public void hacerEmpleado(){
+        this.setCategoria("empleado");
     }
-    public  void loginFallido()
+    public void hacerCLiente(){
+        this.setCategoria("cliente");
+    }
+    public void hacerNocliente()
     {
-        this.setRespuesta("Fail");
+        this.setCategoria("no-registrado");
     }
 }

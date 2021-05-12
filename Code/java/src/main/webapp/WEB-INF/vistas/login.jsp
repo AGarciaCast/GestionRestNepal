@@ -55,9 +55,9 @@
     const submit = document.getElementById("boton");
     const username= document.form.username;
     const password= document.form.password;
-    const url = "http://localhost:8080/login/prueba";
-    localStorage.setItem("login", "logueado");
-    /*
+    const url = "http://localhost:8080/login";
+    //localStorage.setItem("login", "logueado");
+    
     submit.addEventListener("click",login);
 
     function login(event){
@@ -71,28 +71,26 @@
 
         let fetchData = {
             method: 'POST',
-            body: data,
+            body: JSON.stringify(data),
             headers: new Headers()
         }
 
+        fetchData.headers.set("Content-Type", "application/json");
+        fetchData.headers.set("Content-Encoding", "br");
+
         fetch(url,fetchData).
-        then(response => {
-            response.json()
-        }).
-        then(function(data)
-        {
-            if (data.respuesta === "Ok")
-            {
-                localStorage.setItem("login", "");
-                submit.submit();
-            }
-        }).catch( ()=> {
+        then(response => response.json()).
+        then(data => {
+            console.log(data);
+            localStorage.setItem("usuario", JSON.stringify(data));
+            location.href="home"
+         } ).catch( ()=> {
             alert("login fallido");
         })
         
         
     }
-    */
+    
 
     </script>
 </body>

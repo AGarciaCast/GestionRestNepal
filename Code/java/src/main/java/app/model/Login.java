@@ -9,6 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @EqualsAndHashCode
 @ToString
 public class Login {
-	 private String userName;
+	 private String username;
      private String password;
 }

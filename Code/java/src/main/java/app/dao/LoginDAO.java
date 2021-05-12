@@ -18,7 +18,7 @@ public class LoginDAO extends GenericDAO{
         - Si no coincide con un cliente ni empleado -> null
      */
 	public Object authenticateUser(Login loginBean) throws SQLException {
-        String userName = loginBean.getUserName(); //Assign user entered values to temporary variables.
+        String userName = loginBean.getUsername(); //Assign user entered values to temporary variables.
         String password = loginBean.getPassword();
 
         Object usuario=null;

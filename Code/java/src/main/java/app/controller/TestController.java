@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -241,55 +242,16 @@ public class TestController {
 		return "login";
 	}
 
-	@PostMapping("/login")
-	public String login(Model m, @RequestParam("username")String nombre, @RequestParam("password")String password) throws Exception{
-		//m.addAttribute("session",true);
-		app.model.Login loginInfo= new app.model.Login(nombre, password);
-
-		/*
-		Aqui es null, luego no tiene permisos
-		 */
-		if (l.authenticateUser(loginInfo) == null) {
-			return mensaje(m);
-		}
-     	/*
-		Aqui es cliente, luego tiene los permisos de cliente registrado
-		 */
-		else if(l.authenticateUser(loginInfo) instanceof Cliente) {
-			return "login";
-		}
-
-		/*
-		Aqui es empleado, luego tiene los permisos de cambiar el menu
-		 */
-		else if(l.authenticateUser(loginInfo) instanceof EmpleadoRequestRol) {
-			return "login";
-		}
-		/*
-		Nunca deberia llegar hasta aqui, pero por si acaso
-		 */
-		else
-			throw new Exception("Ni es cliente, ni empleado, ni null...?");
-	}
-	@RequestMapping(value = "/login/prueba",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
-	public String pruebaLogin(Model m, @RequestBody Login login)
-	{
-
-		return "OK";
-	}
 
 
-	@GetMapping("/gestionarPedido")
+
+	@GetMapping("/gestionarPedidos")
 	public String gestionPedidos (Model model) throws Exception {
 
 		return  "gestionarPedidos";
 
 	}
-	@PostMapping("/borrarPedido/{id}")
-	public void borrarPedido(@PathVariable int id, Model model) throws Exception
-	{
-		pedidoDAO.eliminarPedido(id);
-	}
+
 
 	@PostMapping("/modificarPedido/{id}")
 	public String modificarPedido(@PathVariable int id, @RequestParam("seleccion") int[] ArrayIds, Model model) throws Exception
@@ -298,7 +260,8 @@ public class TestController {
 		for(int idA : ArrayIds){
 			t.put(idA,1);
 		}
-		pedidoDAO.modificarPedido(t,id);
+		System.out.println("modficando pedido");
+		//pedidoDAO.modificarPedido(t,id);
 		return "gestionarPedidos";
 	}
 

@@ -84,8 +84,9 @@
         const bttomDesseleccionarElementoCarta= document.querySelectorAll(".unselectButtom")
         const formulario = document.querySelector(".seleccionarCartaForm");
         const bttomSubmit = document.querySelector(".enviarSeleccionesCarta");
-        checkLogin();
-        checkPedido();
+        
+        checkUser();
+
         //ADD event listener
         bttomSeleccionarElementoCarta.forEach(function(buttom)
         {
@@ -100,17 +101,35 @@
 
         //functions
 
-        function checkLogin(){
-            let login = localStorage.getItem("login");
-            if (login != null)
-                formulario.action="hacerMenu"
+       
+
+        function checkUser()
+        {
+            const user= localStorage.getItem("usuario")
+
+            if (user != null)
+            {
+                const usuario= JSON.parse(user);
+
+                if( usuario.categoria == "empleado")
+                {
+                    formulario.action="hacerMenu"
+                }
+                else
+                {
+                    let new_li=document.createElement("li");
+                    let new_a=document.createElement("a");
+                    new_a.innerHTML="Pedidos";
+                    new_a.href="./gestionarPedidos";
+                    new_li.appendChild(new_a);
+                    document.getElementsByClassName("nav-links")[0].appendChild(new_li);
+
+                }
+            }
             else
+            {
                 formulario.action="hacerPedido"
-        }
-        function checkPedido(){
-            let pedido_id= localStorage.getItem("pedido_id");
-            if (pedido_id != null)
-                formulario.action="modificarPedido/"+pedido_id
+            }
         }
 
         function seleccionado(event){
@@ -137,9 +156,10 @@
         function submitSeleccionados(event)
         {
             event.preventDefault();
-
-            if (localStorage.getItem("pedido_id"))
+            const pedido_id= localStorage.getItem("pedido_id");
+            if (pedido_id)
             {
+                formulario.action= "modificarPedido/"+pedido_id;
                 localStorage.removeItem("pedido_id");
             }
             formulario.submit();
