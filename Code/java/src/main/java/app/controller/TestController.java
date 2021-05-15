@@ -204,6 +204,19 @@ public class TestController {
 	@PostMapping("/menuPS")
 	public String segundoSeleccionado(@RequestParam("seleccion") int seleccion, Model model) throws Exception {
 		selecciones.add(seleccion);
+		return  menuB(model);
+	}
+
+	@GetMapping("/menuB")
+	public String menuB(Model model) throws Exception {
+		List<PlatoRequestCategoria> bebidas= p.getPlatosMenuActualCategoria("Bebidas");
+		model.addAttribute("bebida",bebidas);
+		return "menuB";
+	}
+
+	@PostMapping("/menuB")
+	public String bebidaSeleccionado(@RequestParam("seleccion") int seleccion, Model model) throws Exception {
+		selecciones.add(seleccion);
 		return  menuPostre(model);
 	}
 
