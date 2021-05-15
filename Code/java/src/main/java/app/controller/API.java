@@ -55,9 +55,11 @@ public class API {
 		 */
         else if(peticion instanceof EmpleadoRequestRol) {
             EmpleadoRequestRol empleado= (EmpleadoRequestRol) peticion;
-            resp.hacerEmpleado();
             resp.setId(empleado.getId_empleado());
-            //categoria == Gestor
+            System.out.println(empleado.getNombre_rol());
+            if(empleado.getNombre_rol().equals("Gestor")) resp.hacerGestor();
+            else resp.hacerEmpleado();
+            System.out.println(resp);
             return  ResponseEntity.ok(resp);
         }
 		/*

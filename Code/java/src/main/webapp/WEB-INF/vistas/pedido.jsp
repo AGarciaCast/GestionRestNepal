@@ -38,7 +38,7 @@
         <form action="pedido" name="form"  method="POST" class="formulario">
             <div class="campos">
                 <h1>Direccion</h1>
-                <input type="text" name="direccion" />
+                <input type="text" name="direccion" class="direccionInput"/>
             </div>
             <div class="campos">
                 <h1>Tarjeta</h1>
@@ -83,6 +83,8 @@
             {
                 const usuario= JSON.parse(user);
                 formulario.action="/pedido/"+usuario.id;
+                document.querySelector(".direccionInput").placeholder=usuario.direccion
+                document.querySelector(".direccionInput").value=document.querySelector(".direccionInput").placeholder
             }
         }
 

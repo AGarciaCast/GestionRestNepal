@@ -83,7 +83,8 @@
         then(data => {
             console.log(data);
             localStorage.setItem("usuario", JSON.stringify(data));
-            location.href="home"
+            if( data.categoria == "gestor") location.href="facturacion"
+            else location.href="home"
          } ).catch( ()=> {
             alert("login fallido");
         })

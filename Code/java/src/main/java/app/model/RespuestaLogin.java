@@ -20,7 +20,8 @@ public class RespuestaLogin {
     public void hacerEmpleado(){
         this.setCategoria("empleado");
     }
-    public void hacerGestor(){ this.setCategoria("gestor");}
+    public void hacerGestor(){ System.out.println("HOLAAA");
+            this.categoria="gestor";}
     public void hacerCLiente(){ this.setCategoria("cliente"); }
 
 }
