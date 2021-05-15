@@ -27,7 +27,11 @@
             <i class="fas fa-step-forward"></i>
         </button>
     </section>
-
+    <c:if test="${menu}">
+    <section class="secMenu">
+        <h2 class="tittleForm" > Usted ha pedido un menú y el coste es de 12€ </h2>
+    </section>
+    </c:if>
 
     <section class="secformulario">
         <h1 class="tittleForm">Direccion y tarjeta </h1>
@@ -70,7 +74,7 @@
         const formulario = document.querySelector(".formulario");
         const verificacion= calcularPrecio() > 13 
 
-        
+
 
         function checkUser(){
             const user= localStorage.getItem("usuario")

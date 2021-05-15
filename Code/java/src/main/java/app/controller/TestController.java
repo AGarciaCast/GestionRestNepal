@@ -26,6 +26,7 @@ import app.model.request.plato.section.PlatoRequestCategoria;
 public class TestController {
 
 	private ArrayList<Integer> selecciones =new ArrayList<Integer>();
+	private boolean menu=false;
 
 	@Autowired
 	private PlatoDAO p;
@@ -47,7 +48,7 @@ public class TestController {
 	
 	@GetMapping("/home")
     public String mensaje(Model model) throws Exception {
-
+		menu=false;
 		LinkedHashMap<String,List<Plato>> platosPorCategoria= new LinkedHashMap<>();
 		List<Plato> platos= new ArrayList<Plato>();
 
@@ -180,6 +181,7 @@ public class TestController {
 
 	@GetMapping("/menu")
 	public String menu(Model model) throws Exception {
+		menu=true;
 		if(!selecciones.isEmpty())
 		{
 			selecciones.clear();
@@ -244,6 +246,7 @@ public class TestController {
 		}
 		System.out.println(platos);
 		model.addAttribute("platos",platos);
+		model.addAttribute("menu",menu);
 		return "pedido";
 	}
 	@PostMapping("/pedido")
@@ -255,7 +258,7 @@ public class TestController {
 			t.put(selecciones.get(i),1);
 		}
 		System.out.println("ESTOY HACIENDO EL PEDIDO");
-		pedidoDAO.crearNuevoPedido(t,direccion, -1, false);
+		pedidoDAO.crearNuevoPedido(t,direccion, -1, menu);
 		selecciones.clear();
 		return "redirect:/home";
 	}
@@ -270,7 +273,7 @@ public class TestController {
 			t.put(selecciones.get(i),1);
 		}
 		System.out.println("ESTOY HACIENDO EL PEDIDO");
-		pedidoDAO.crearNuevoPedido(t,direccion, id, false);
+		pedidoDAO.crearNuevoPedido(t,direccion, id, menu);
 		selecciones.clear();
 		return "redirect:/home";
 	}
