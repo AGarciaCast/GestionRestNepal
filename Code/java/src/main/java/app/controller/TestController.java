@@ -235,7 +235,7 @@ public class TestController {
 			t.put(selecciones.get(i),1);
 		}
 		System.out.println("ESTOY HACIENDO EL PEDIDO");
-		pedidoDAO.crearNuevoPedido(t,direccion, -1);
+		pedidoDAO.crearNuevoPedido(t,direccion, -1, false);
 		selecciones.clear();
 		return "redirect:/home";
 	}
@@ -250,7 +250,7 @@ public class TestController {
 			t.put(selecciones.get(i),1);
 		}
 		System.out.println("ESTOY HACIENDO EL PEDIDO");
-		pedidoDAO.crearNuevoPedido(t,direccion, id);
+		pedidoDAO.crearNuevoPedido(t,direccion, id, false);
 		selecciones.clear();
 		return "redirect:/home";
 	}
