@@ -20,7 +20,7 @@ public class PedidoDAO  extends GenericDAO{
         - Si es cliente registrado su id
         - Si no esta registrado -> -1
      */
-    public BigInteger crearNuevoPedido(Hashtable<Integer, Integer> platos_pedido, String direccion, int id_cliente) throws Exception {
+    public BigInteger crearNuevoPedido(Hashtable<Integer, Integer> platos_pedido, String direccion, int id_cliente, boolean menu) throws Exception {
         BigInteger id_pedido=null;
         String query1 = "INSERT INTO pedido (direccion, fecha, hora_entrega, importe, id_estado) " +
                         "VALUES (?, NOW(), NOW() + INTERVAL 30 MINUTE, 0, 1);";
@@ -46,6 +46,13 @@ public class PedidoDAO  extends GenericDAO{
             String query3 = "INSERT INTO cliente_pedido VALUES (?,?)";
             try (Connection conn = connector.getConnection()) {
                 queryRunner.insert(conn, query3, new ScalarHandler<>(), id_cliente, id_pedido);
+            }
+        }
+
+        if(menu){
+            String query4 =  "UPDATE pedido SET importe = 12 WHERE id_pedido= ?;";
+            try (Connection conn = connector.getConnection()) {
+                queryRunner.update(conn,query4,id_pedido);
             }
         }
         return id_pedido;
