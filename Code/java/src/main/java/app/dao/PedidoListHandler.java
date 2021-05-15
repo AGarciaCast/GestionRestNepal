@@ -18,8 +18,9 @@ public class PedidoListHandler extends BeanListHandler<Pedido>{
     public List<Pedido> handle(ResultSet rs) throws SQLException {
         List<Pedido> pedidos = new ArrayList<Pedido>();
         while (rs.next()) {
-            LocalDateTime fecha = rs.getDate("fecha").toLocalDate().atStartOfDay();
-            Pedido p = new Pedido(rs.getInt("id_pedido"), rs.getString("direccion"), fecha, fecha,
+            LocalDateTime fecha = rs.getTimestamp("fecha").toLocalDateTime();
+            LocalDateTime fechaEntrega = rs.getTimestamp("hora_entrega").toLocalDateTime();
+            Pedido p = new Pedido(rs.getInt("id_pedido"), rs.getString("direccion"), fecha, fechaEntrega,
                     rs.getFloat("importe"), rs.getInt("id_estado"), rs.getByte("anulado"));
             pedidos.add(p);
         }
