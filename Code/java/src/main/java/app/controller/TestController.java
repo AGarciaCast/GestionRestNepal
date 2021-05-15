@@ -10,6 +10,7 @@ import java.util.List;
 import app.dao.*;
 import app.model.*;
 import app.model.request.empleado.section.EmpleadoRequestRol;
+import app.model.request.plato.section.PlatoRequestPedido;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,7 +118,7 @@ public class TestController {
 	*/
 
 
-	@GetMapping("/testDAO")
+	/*@GetMapping("/testDAO")
 	@ResponseBody
 	public Object test() throws Exception {
 		Login usuario = new Login("Alex", "123");
@@ -130,6 +131,12 @@ public class TestController {
 			System.out.println("CLIENTE");
 
 		return res;
+	}*/
+
+	@GetMapping("/testDAO")
+	@ResponseBody
+	public List<PlatoRequestPedido> test() throws Exception {
+		return p.getPlatoPedido(10);
 	}
 
 

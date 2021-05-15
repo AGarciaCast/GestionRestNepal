@@ -3,6 +3,7 @@ package app.dao;
 
 import app.model.Plato;
 import app.model.request.plato.section.PlatoRequestCategoria;
+import app.model.request.plato.section.PlatoRequestPedido;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.springframework.stereotype.Repository;
@@ -121,5 +122,18 @@ public class PlatoDAO extends GenericDAO {
 				queryRunner.query(conn, query, new BeanHandler<>(Plato.class));
   	}
   	return plato;
+	}
+
+	public List<PlatoRequestPedido> getPlatoPedido(int id_pedido) throws SQLException {
+		List<PlatoRequestPedido> platos = new ArrayList<PlatoRequestPedido>();
+		String query = "SELECT p.id_plato, p.nombre, p.descripcion, p.precio, p.num_plato, p.id_categoria, pp.cantidad " +
+						"FROM plato AS p " +
+						"JOIN plato_pedido AS pp " +
+						"ON p.id_plato = pp.id_plato " +
+						"WHERE pp.id_pedido = ?";
+		try (Connection conn = connector.getConnection()) {
+			platos = queryRunner.query(conn, query, new BeanListHandler<>(PlatoRequestPedido.class), id_pedido);
+		}
+		return platos;
 	}
 }
