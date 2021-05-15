@@ -18,20 +18,24 @@
     <h1 id="tittle"> Hola Nombre, estos son tus pedidos realizados</h1>
 
     <section class="lista-pedidos">
-        <div class="pedido">
-            <div class="pedido-info">
-                <h2> Pedido 1</h2>
-                <h2> Fecha </h2>
+        <c:forEach items="${pedidos}" var="pedido_cliente">
+            <div class="pedido">
+                <div class="pedido-info">
+                    <h2> Pedido 1</h2>
+                    <h2 class="fecha_pedido"> ${pedido_cliente.getFecha()} </h2>
+                </div>
+                <div class="pedido-buttons">
+                    <button class="borrar-pedido" type="button" value="${pedido_cliente.getId_pedido()}"> 
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button  class="modificar-pedido" type="button" value="${pedido_cliente.getId_pedido()}">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
             </div>
-            <div class="pedido-buttons">
-                <button class="borrar-pedido" type="button" value="1"> 
-                    <i class="fas fa-trash-alt"></i>
-                </button>
-                <button  class="modificar-pedido" type="button" value="2">
-                    <i class="fas fa-edit"></i>
-                </button>
-            </div>
-        </div>
+
+        </c:forEach>
+        
     </section>
 
 
@@ -40,7 +44,10 @@
 
     const borrar_pedido= document.querySelectorAll(".borrar-pedido");
     const modificar_pedido= document.querySelectorAll(".modificar-pedido")
+    const user= localStorage.getItem("usuario")
+    const usuario= JSON.parse(user);
 
+    setName();
 
     borrar_pedido.forEach(pedido => {
         pedido.addEventListener("click", borrarPedido);
@@ -69,19 +76,46 @@
             body: null,
             headers: new Headers()
         }
+        fetchData.headers.set("Content-Type", "application/json");
+        fetchData.headers.set("Content-Encoding", "br");
 
         fetch(url, fetchData).
-        catch( ()=> {
-            alert("el pedido no pudo ser borrado");
+        then(data=>console.log(data))
+        .catch( ()=> {
         })
+
+        location.href="/gestionarPedidos/"+usuario.id;
+
         
         
     }
 
     function modficarPedido(event)
     {
+        const pedido= event.target.parentElement.parentElement;
+        const time=pedido.querySelector(".fecha_pedido").innerHTML;
+        checkTime(time);
         localStorage.setItem("pedido_id",event.target.value);
         location.href='/home'
+    }
+
+    function setName()
+    {
+        
+        const name= usuario.name;
+        document.getElementById("tittle").innerHTML="Hola "+ name+ ", estos son tus pedidos realizados"
+    }
+
+    function checkTime(time)
+    {
+        const d= new Date();
+        console.log(time)
+        const fecha=time.slice(0,-7);
+        const hora = time.substr(-6);
+        console.log(fecha)
+        console.log(hora)
+        const prueba= Date.parse(fecha+" "+hora);
+        console.log(prueba);
     }
 
     </script>

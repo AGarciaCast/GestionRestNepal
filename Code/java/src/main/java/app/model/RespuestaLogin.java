@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class RespuestaLogin {
     private String categoria;
     private int  id;
+    private String name;
 
 
     public void hacerEmpleado(){

@@ -116,7 +116,7 @@ public class TestController {
 	}
 	*/
 
-	/*
+
 	@GetMapping("/testDAO")
 	@ResponseBody
 	public Object test() throws Exception {
@@ -131,7 +131,7 @@ public class TestController {
 
 		return res;
 	}
-	*/
+
 
 	/*
 	@GetMapping("/testDAO")
@@ -142,12 +142,13 @@ public class TestController {
 		return f.getFacturacionDia(fecha);
 	}
 	*/
-
+	/*
 	@GetMapping("/testDAO")
 	@ResponseBody
 	public List<Pedido> test() throws Exception {
 		return pedidoDAO.getPedidosDelCliente(1);
 	}
+	*/
 
 	/*
 	@GetMapping("/testDAO")
@@ -233,8 +234,25 @@ public class TestController {
 			System.out.println(selecciones.get(i));
 			t.put(selecciones.get(i),1);
 		}
+		System.out.println("ESTOY HACIENDO EL PEDIDO");
 		pedidoDAO.crearNuevoPedido(t,direccion, -1);
-		return "pedido";
+		selecciones.clear();
+		return "redirect:/home";
+	}
+
+	@PostMapping("/pedido/{id}")
+	public String crearPedidoClienteRegistrado(@PathVariable int id,
+			@RequestParam("direccion") String direccion,Model model) throws Exception {
+		Hashtable <Integer, Integer> t = new Hashtable<>();
+		System.out.println(selecciones.size());
+		for(int i=0; i<selecciones.size() ; i++){
+			System.out.println(selecciones.get(i));
+			t.put(selecciones.get(i),1);
+		}
+		System.out.println("ESTOY HACIENDO EL PEDIDO");
+		pedidoDAO.crearNuevoPedido(t,direccion, id);
+		selecciones.clear();
+		return "redirect:/home";
 	}
 
 	@GetMapping("/login")
@@ -245,24 +263,34 @@ public class TestController {
 
 
 
-	@GetMapping("/gestionarPedidos")
-	public String gestionPedidos (Model model) throws Exception {
+	@GetMapping("/gestionarPedidos/{id}")
+	public String gestionPedidos (@PathVariable int id,Model model) throws Exception {
 
+		List<Pedido> pedidos=pedidoDAO.getPedidosDelCliente(id);
+		model.addAttribute("pedidos",pedidos);
+		for(Pedido pedido : pedidos)
+		{
+			System.out.println(pedido.getId_pedido());
+			System.out.println(pedido.getFecha());
+			System.out.println(pedido.getHora_entrega());
+		}
 		return  "gestionarPedidos";
 
 	}
 
 
-	@PostMapping("/modificarPedido/{id}")
-	public String modificarPedido(@PathVariable int id, @RequestParam("seleccion") int[] ArrayIds, Model model) throws Exception
+	@PostMapping("/modificarPedido/{id_pedido}/{id_cliente}")
+	public String modificarPedido(@PathVariable int id_pedido,
+								  @PathVariable int id_cliente,
+								  @RequestParam("seleccion") int[] ArrayIds, Model model) throws Exception
 	{
 		Hashtable <Integer, Integer> t = new Hashtable<>();
 		for(int idA : ArrayIds){
 			t.put(idA,1);
 		}
 		System.out.println("modficando pedido");
-		//pedidoDAO.modificarPedido(t,id);
-		return "gestionarPedidos";
+		pedidoDAO.modificarPedido(t,id_pedido);
+		return "redirect:/gestionarPedidos/"+id_cliente;
 	}
 
 	@GetMapping("/facturacion")

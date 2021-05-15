@@ -57,7 +57,7 @@ public class PedidoDAO  extends GenericDAO{
                         "FROM pedido as p " +
                         "JOIN cliente_pedido as cp " +
                         "ON p.id_pedido=cp.id_pedido " +
-                        "WHERE cp.id_cliente=?";
+                        "WHERE cp.id_cliente=? and p.anulado= 1";
 
         try (Connection conn = connector.getConnection()) {
             pedidos = queryRunner.query(conn, query, new PedidoListHandler(), id);

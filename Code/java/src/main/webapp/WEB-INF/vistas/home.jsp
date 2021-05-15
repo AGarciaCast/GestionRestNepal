@@ -120,9 +120,10 @@
                     let new_li=document.createElement("li");
                     let new_a=document.createElement("a");
                     new_a.innerHTML="Pedidos";
-                    new_a.href="./gestionarPedidos";
+                    new_a.href="./gestionarPedidos/"+usuario.id;
                     new_li.appendChild(new_a);
                     document.getElementsByClassName("nav-links")[0].appendChild(new_li);
+                    formulario.action="hacerPedido";
 
                 }
             }
@@ -159,7 +160,10 @@
             const pedido_id= localStorage.getItem("pedido_id");
             if (pedido_id)
             {
-                formulario.action= "modificarPedido/"+pedido_id;
+                const user= localStorage.getItem("usuario")
+                const usuario= JSON.parse(user);
+
+                formulario.action= "modificarPedido/"+pedido_id+"/"+usuario.id;
                 localStorage.removeItem("pedido_id");
             }
             formulario.submit();

@@ -43,8 +43,9 @@ public class API {
         else if(peticion instanceof Cliente) {
 
             Cliente cliente= (Cliente) peticion;
-            resp.hacerEmpleado();
+            resp.hacerCLiente();
             resp.setId(cliente.getId_cliente());
+            resp.setName(cliente.getUsuario());
             return  ResponseEntity.ok(resp);
         }
 
@@ -64,11 +65,18 @@ public class API {
             return ResponseEntity.status(401).build();
     }
 
-
+    @ResponseBody
     @PostMapping("/borrarPedido/{id}")
     public void borrarPedido(@PathVariable int id, Model model) throws Exception
     {
-        System.out.println("borrar pedido");
-        pedidoDAO.eliminarPedido(id);
+        try{
+            System.out.println("borrar pedido");
+            pedidoDAO.eliminarPedido(id);
+        }catch (Exception e)
+        {
+            System.out.println();
+            System.out.println("PORFAVOR DIME SI ESTOS PETA");
+        }
+
     }
 }

@@ -67,9 +67,22 @@
         const numberPlates= plates.length;
         const dots= document.querySelectorAll(".dot");
         const bttomPedido = document.querySelector(".bttomPedido");
+        const formulario = document.querySelector(".formulario");
         const verificacion= calcularPrecio() > 13 
 
         
+
+        function checkUser(){
+            const user= localStorage.getItem("usuario")
+
+            if (user != null)
+            {
+                const usuario= JSON.parse(user);
+                formulario.action="/pedido/"+usuario.id;
+            }
+        }
+
+        checkUser();
 
         function calcularPrecio()
         {
