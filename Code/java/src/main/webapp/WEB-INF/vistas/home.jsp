@@ -17,7 +17,7 @@
                 <li>
                     <a href="#Carta"> Carta</a>
                 </li>   
-                <li>
+                <li class="navMenu">
                     <a href="./menu">Menu</a>
                 </li>
             </ul>
@@ -114,6 +114,7 @@
                 if( usuario.categoria == "empleado")
                 {
                     formulario.action="hacerMenu"
+                    document.querySelector(".navMenu").remove()
                 }
                 else
                 {
