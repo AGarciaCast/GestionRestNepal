@@ -46,6 +46,7 @@
     const modificar_pedido= document.querySelectorAll(".modificar-pedido")
     const user= localStorage.getItem("usuario")
     const usuario= JSON.parse(user);
+    const pedidos = document.querySelectorAll(".pedido");
 
     setName();
 
@@ -58,11 +59,27 @@
         pedido.addEventListener("click",modficarPedido)
     })
 
+    pedidos.forEach(pedido=>{
+        setTimeFecha(pedido);
+    })
+
     function borrarPedido(event)
     {
-        console.log(event.target);
-        const pedido_id= event.target.value;
-        borrarPedidoAPI(pedido_id,"http://localhost:8080/borrarPedido/"+pedido_id)
+        const pedido= event.target.parentElement.parentElement;
+        const time=pedido.querySelector(".fecha_pedido").innerHTML;
+        if(checkTime(time))
+        {
+            console.log(event.target);
+            const pedido_id= event.target.value;
+            borrarPedidoAPI(pedido_id,"http://localhost:8080/borrarPedido/"+pedido_id)
+        }
+        else
+        {
+            alert("No se puede eliminar este pedido, ya han pasado más de 10 minutos")
+        }
+
+
+
         
     }
 
@@ -94,14 +111,20 @@
     {
         const pedido= event.target.parentElement.parentElement;
         const time=pedido.querySelector(".fecha_pedido").innerHTML;
-        checkTime(time);
-        localStorage.setItem("pedido_id",event.target.value);
-        location.href='/home'
+        if(checkTime(time))
+        {
+            localStorage.setItem("pedido_id",event.target.value);
+            location.href='/home'
+        }
+        else
+        {
+            alert("No se puede modificar este pedido, ya han pasado más de 10 minutos")
+        }
+        
     }
 
     function setName()
     {
-        
         const name= usuario.name;
         document.getElementById("tittle").innerHTML="Hola "+ name+ ", estos son tus pedidos realizados"
     }
@@ -109,13 +132,22 @@
     function checkTime(time)
     {
         const d= new Date();
+        const fecha_pedido= Date.parse(time);
+        const count= (d.getTime()-fecha_pedido)/60000;
+        return count <= 10;
+    }
+
+    function setTimeFecha(pedido)
+    {
+        
+        const time=pedido.querySelector(".fecha_pedido").innerHTML;
         console.log(time)
-        const fecha=time.slice(0,-7);
-        const hora = time.substr(-6);
+        const fecha=time.slice(0,-10);
         console.log(fecha)
+        const hora = time.substr(-9);
         console.log(hora)
-        const prueba= Date.parse(fecha+" "+hora);
-        console.log(prueba);
+        pedido.querySelector(".fecha_pedido").innerHTML= fecha+" "+hora;
+
     }
 
     </script>
