@@ -46,6 +46,7 @@ public class API {
             resp.hacerCLiente();
             resp.setId(cliente.getId_cliente());
             resp.setName(cliente.getUsuario());
+            resp.setDireccion(cliente.getDireccion());
             return  ResponseEntity.ok(resp);
         }
 
@@ -56,6 +57,7 @@ public class API {
             EmpleadoRequestRol empleado= (EmpleadoRequestRol) peticion;
             resp.hacerEmpleado();
             resp.setId(empleado.getId_empleado());
+            //categoria == Gestor
             return  ResponseEntity.ok(resp);
         }
 		/*

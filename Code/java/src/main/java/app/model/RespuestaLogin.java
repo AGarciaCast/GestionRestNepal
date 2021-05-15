@@ -14,16 +14,13 @@ public class RespuestaLogin {
     private String categoria;
     private int  id;
     private String name;
+    private String direccion;
 
 
     public void hacerEmpleado(){
         this.setCategoria("empleado");
     }
-    public void hacerCLiente(){
-        this.setCategoria("cliente");
-    }
-    public void hacerNocliente()
-    {
-        this.setCategoria("no-registrado");
-    }
+    public void hacerGestor(){ this.setCategoria("gestor");}
+    public void hacerCLiente(){ this.setCategoria("cliente"); }
+
 }
