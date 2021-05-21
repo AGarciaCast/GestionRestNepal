@@ -18,10 +18,11 @@
     <h1 id="tittle"> Hola Nombre, estos son tus pedidos realizados</h1>
 
     <section class="lista-pedidos">
+        <c:set var="count" value="1" scope="page" />
         <c:forEach items="${pedidos}" var="pedido_cliente">
             <div class="pedido">
                 <div class="pedido-info">
-                    <h2> Pedido 1</h2>
+                    <h2> Pedido ${count}</h2> 
                     <h2 class="fecha_pedido"> ${pedido_cliente.getFecha()} </h2>
                 </div>
                 <div class="pedido-buttons">
@@ -33,6 +34,9 @@
                     </button>
                 </div>
             </div>
+            <c:set var="count" value="${count + 1}" scope="page"/>
+
+
 
         </c:forEach>
         
