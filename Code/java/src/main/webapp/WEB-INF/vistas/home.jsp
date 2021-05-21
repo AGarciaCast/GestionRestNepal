@@ -13,7 +13,9 @@
             <h1> Restaurante</h1>
     
             <ul class="nav-links">
-    
+                <li>
+                    <a href="./login"> Login</a>
+                </li>   
                 <li>
                     <a href="#Carta"> Carta</a>
                 </li>   

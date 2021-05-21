@@ -28,7 +28,7 @@
          <tr>
          <td></td>
          <td><input type="submit" id="boton" value="Login"></input><input
-         type="reset" value="Reset"></input></td>
+         type="reset" value="Reset" class="deslog"></input></td>
          </tr>
         </table>
     </form>
@@ -56,9 +56,10 @@
     const username= document.form.username;
     const password= document.form.password;
     const url = "http://localhost:8080/login";
-    //localStorage.setItem("login", "logueado");
+    const deslog= document.querySelector(".deslog");
     
     submit.addEventListener("click",login);
+    deslog.addEventListener("click",()=>{localStorage.clear()})
 
     function login(event){
         event.preventDefault();
